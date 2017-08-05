@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/ssm/controller/UserAction.java=GBK
+encoding//src/main/java/com/ssm/dao/UserDao.java=GBK
+encoding//src/main/java/com/ssm/service/Imp/UserServiceImpl.java=GBK
+encoding//src/main/java/com/ssm/service/UserService.java=GBK
+encoding//src/test/java=UTF-8
