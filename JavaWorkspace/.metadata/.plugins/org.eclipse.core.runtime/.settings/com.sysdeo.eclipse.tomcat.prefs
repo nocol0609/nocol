@@ -1,0 +1,7 @@
+computeSourcePath=true
+contextsDir=I\:\\program\\apache-tomcat-7.0.75\\conf\\Catalina\\localhost
+eclipse.preferences.version=1
+managerUrl=http\://localhost\:8080/manager
+tomcatConfigFile=I\:\\program\\apache-tomcat-7.0.75\\conf\\server.xml
+tomcatDir=I\:\\program\\apache-tomcat-7.0.75
+tomcatVersion=tomcatV7

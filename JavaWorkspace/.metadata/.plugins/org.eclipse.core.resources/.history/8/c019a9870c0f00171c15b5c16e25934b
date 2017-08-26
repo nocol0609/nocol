@@ -1,0 +1,20 @@
+package com.noocl.triangle;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ ======打印倒中三角形======
+ 
+ *  *  *  *  *  *  *  *  * 
+    *  *  *  *  *  *  * 
+       *  *  *  *  * 
+          *  *  * 
+             *  
+            
+ */
+public class Test6 {
+
+}

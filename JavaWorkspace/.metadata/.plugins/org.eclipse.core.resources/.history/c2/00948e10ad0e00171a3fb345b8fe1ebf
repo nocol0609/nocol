@@ -1,0 +1,18 @@
+package com.nocol.io;
+
+import java.io.File;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class FileTest {
+	public static void main(String[] args) throws Exception{
+		//绝对路径
+		File file=new File("I:\\JavaWorkspace\\Test\\a.txt");
+		//相对路径
+		File file2=new File("b.txt");
+	}
+}

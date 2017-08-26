@@ -1,0 +1,32 @@
+﻿[
+  {    
+    "id":1,    
+    "text":"江苏",
+    "state":"closed",
+    "children":[
+	{
+	   "id":11,
+	   "text":"苏州"	,
+           "state":"closed",
+           "children":[
+	      {
+		 "id":111,    
+    	         "text":"昆山"
+	      },	
+	      {
+		 "id":112,    
+    	         "text":"巴城"
+	      }	
+	   ]
+	},
+	{
+	   "id":12,
+	   "text":"南京"		
+	}
+    ]
+  },    
+  {    
+    "id":2,    
+    "text":"浙江"
+  } 
+] 

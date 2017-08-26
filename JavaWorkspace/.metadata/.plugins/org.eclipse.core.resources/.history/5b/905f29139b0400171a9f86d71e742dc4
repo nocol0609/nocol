@@ -1,0 +1,13 @@
+package com.proxy;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+//抽象主题类
+public interface Computer {
+
+	public abstract void sellComputer();
+}

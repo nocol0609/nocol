@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>exe_2.html</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<script type="text/javascript" src="jquery-1.8.3.js"></script>
+  </head>
+  <body>
+  	<form>
+		<table border="1" align="center" width="70%">
+			<tr>
+				<th>用户名</th>
+				<th>密码</th>
+				<th>0</th>
+			</tr>
+			<tr>
+				<td>张三</td>
+				<td>123456</td>
+				<th>1</th>
+			</tr>
+			<tr>
+				<td>李四</td>
+				<td>654321</td>
+				<th>2</th>
+			</tr>
+			<tr>
+				<td>王五</td>
+				<td>162534</td>
+				<th>3</th>
+			</tr>
+		</table> 
+	</form>
+	
+	
+	<script type="text/javascript">
+
+		//NO1)将索引号为奇数的行背景色设为蓝色
+		$("table tr:odd").css("background-color","blue");
+				
+		//NO2)将索引号为偶数的行背景色设为黄色
+		$("table tr:even").css("background-color","yellow");
+
+		//NO3)将第一行背景色设为粉色
+		$("table tr:first").css("background-color","pink");
+		
+	</script> 	
+  
+  </body>
+</html> 
+

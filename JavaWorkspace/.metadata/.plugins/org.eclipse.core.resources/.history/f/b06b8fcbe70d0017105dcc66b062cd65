@@ -1,0 +1,18 @@
+package com.nocol.collection;
+
+import java.util.List;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class ArrayListTest {
+	private static int N=50000;
+	private static List val;
+	
+	static{
+		
+	}
+}

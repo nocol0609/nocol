@@ -1,0 +1,35 @@
+package com.dom4j;
+
+import java.io.File;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+import org.junit.Test;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Dom4jTest {
+	
+	@Test
+	public void test() throws Exception {
+		// 创建xml解析器
+		SAXReader reader = new SAXReader();
+		// 读取xml文件并返回根节点对象
+		Document document = reader.read(new File("./src/contact.xml"));
+		// 利用根节点获取子节点
+		Iterator<Node> iterator = document.nodeIterator();//不包括孙节点
+		while (iterator.hasNext()) {
+			//取出节点
+			Node node = iterator.next();
+			//获取节点名称
+			String name=node.getName();
+			System.out.println(name);
+		}
+	}
+}

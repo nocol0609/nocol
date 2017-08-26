@@ -1,0 +1,16 @@
+package com.jdk5_news;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class Cat implements jump {
+
+	@Override
+	public void jumpping() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

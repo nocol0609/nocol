@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>显示和隐藏图片</title>
+<script type="text/javascript">
+	window.onload=function(){
+		document.getElementById("show").onclick=function(){
+			var img=document.images[0];
+			//显示图片
+			img.style.visibility = "visible";
+		}	
+		
+		document.getElementById("hiden").onclick=function(){
+			var img=document.images[0];
+			//隐藏图片
+			img.style.visibility = "hidden";
+		}	
+	}
+
+</script>
+
+</head>
+<body>
+	<img src="1.jpg" /><br/>
+	<input type="button" value="显示" id="show" >
+	<input type="button" value="隐藏" id="hiden">
+</body>
+</html>

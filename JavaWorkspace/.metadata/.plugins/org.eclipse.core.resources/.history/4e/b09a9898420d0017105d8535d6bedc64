@@ -1,0 +1,35 @@
+package com.xml.test;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+*  课堂练习： 
+* 1.使用dom4j的api来生成以下的xml文件
+		<Students>
+		<Student id="1">
+			<name>张三</name>
+			<gender>男</gender>
+			<grade>计算机1班</grade>
+			<address>广州天河</address>
+		</Student>
+		<Student id="2">
+			<name>李四</name>
+			<gender>女</gender>
+			<grade>计算机2班</grade>
+			<address>广州越秀</address>
+		</Student>
+		</Students>
+		
+2.修改id为2的学生的姓名，改为“王丽”
+		
+3.删除id为2的学生
+		
+ */
+public class Xml_Create {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,21 @@
+package com.nocol.io;
+
+import java.io.FileInputStream;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class CopyTest {
+	public static void main(String[] args) throws Exception {
+
+		FileInputStream fis = new FileInputStream("test.txt");
+		// System.out.println(fis.available());
+		int data = fis.read();
+		while (data != -1) {
+			System.out.println((char) data);
+		}
+	}
+}

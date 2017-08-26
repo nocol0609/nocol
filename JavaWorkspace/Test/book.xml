@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<books>
+  
+  
+  <book id="1">
+    
+    
+    <name>java与模式</name> 
+    
+    
+    <price>80</price>
+    
+    
+    <author>闫宏</author>
+  
+  
+  </book>
+  
+  
+  
+  <book id="1">
+
+    
+    <name>谁的青春不迷茫</name>
+    
+    
+    <price>40</price>
+    
+    
+    <author>刘同</author>
+  
+  
+  </book>
+  
+  
+  <book id="3">
+    
+    
+    <name>java疯狂讲义</name>
+    
+    
+    <price>50</price>
+    
+    
+    <author>张三</author>
+ 	
+    
+    <author>李四</author>
+ 
+  
+  </book>
+
+
+</books>
+

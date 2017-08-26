@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+/* function showDate() {
+	for(var i=0;i<2;i++){
+		window.open("date.html");
+	}
+} 
+function small(){
+	resizeTo(300,200); //相对于原本窗口改变指定的大小。	
+} */
+
+function showTime(){
+	var timeSpan = document.getElementById("time");
+	var date  = new Date().toLocaleString();
+	timeSpan.innerHTML = date.fontcolor("red");
+}
+ 
+</script>
+
+</head>
+<body>
+	<input type="button" value="下载" onclick="showDate()"/>
+	<input type="button" value="变小" onclick="small()"/>
+	<a href="#" onmousemove="showTime" onmouseout="hideTime" id="time">当前系统时间：</a><span id="timeSpan"></span>
+</body>
+</html>

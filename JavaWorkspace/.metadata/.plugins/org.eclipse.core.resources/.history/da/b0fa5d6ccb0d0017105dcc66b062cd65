@@ -1,0 +1,17 @@
+package com.nocol.collection;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+class Student {
+
+}
+
+public class CollectionTest {
+	public static void main(String[] args) {
+		Student s = new Student();
+	}
+}

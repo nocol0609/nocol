@@ -1,0 +1,24 @@
+package com.reflect_propertiy;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ * 反射中配置文件的应用
+ */
+public class PropertyDemo {
+	public static void main(String[] args) {
+		//反射前的做法
+		Student s=new Student();
+		s.love();
+		
+		Teacher t=new Teacher();
+		t.love();
+		
+		System.out.println("--------------");
+		
+		//反射后的做法
+	}
+}

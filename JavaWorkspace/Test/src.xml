@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<woss>
+	<gather class="com.briup.gather.Gather">
+		<path>radwtmp_test</path>
+	</gather>
+	<client class="com.nocol.send.ClientImpl">
+		<ip>192.168.179.2</ip>
+		<port>10000</port>
+	</client>
+	<server class="com.nocol.send.ServerImpl">
+		<port>10000</port>
+	</server>
+	<dbstore class="com.nocol.send.DBImpl">
+		<url>jdbc:oracle:thin:@localhost:1521:XE</url>
+		<user>nocol</user>
+		<pwd>123</pwd>
+		<batchSize>500</batchSize>
+	</dbstore>
+</woss>

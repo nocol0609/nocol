@@ -1,0 +1,46 @@
+package com.homework;
+
+import java.util.Comparator;
+import java.util.TreeSet;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+/*
+ * 使用TreeSet和Comparator,写TreeSetTest1
+ * 要求：对TreeSet中的元素"HashSet"、"ArrayList"、"TreeMap"、"HashMap"、"TreeSet"、
+ * "LinkedList"进行升序和倒序排列
+ * 
+ */
+public class TreeSetTest1 {
+	public static void main(String[] args) {
+		TreeSet<String> ts = new TreeSet<String>(new Comparator<String>() {
+			//升序
+			@Override
+			public int compare(String s1, String s2) {
+				// TODO Auto-generated method stub
+				if (s1.compareTo(s2) > 0) {
+					return 1;
+				} else if (s1.compareTo(s2) < 0) {
+					return -1;
+				} else {
+					return 0;
+				}
+			}
+		});
+		ts.add("HashSet");
+		ts.add("ArrayList");
+		ts.add("TreeMap");
+		ts.add("HashMap");
+		ts.add("TreeSet");
+		ts.add("LinkedList");
+
+		for (String s : ts) {
+			System.out.println(s);
+		}
+
+	}
+}

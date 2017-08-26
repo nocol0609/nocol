@@ -1,0 +1,40 @@
+package com.nocol.jdbc;
+
+import oracle.jdbc.driver.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/*
+ * 
+ * @author xx
+ * 2016-12-27
+ * TODO JDBC的六大步骤
+ * 
+ */
+public class JDBCStep {
+	//关闭资源
+	public static void main(String[] args){
+		Connection connection=null;
+		Statement  statement=
+		try {
+			//第一步：注册驱动
+			Class.forName("oracle.jdbc.OracleDriver");
+			//第二步：获取连接
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:15121:XE","system","123");
+			System.out.println(connection);
+			
+							
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}  
+}

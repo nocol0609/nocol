@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+  </head>
+  <body>
+	
+	<img src="18_a.jpg"/>
+	
+	<script type="text/javascript">
+		//获取图片的坐标
+/* 		var $imag=$("img").offset();
+		var x=$imag.left;
+		var y=$imag.top;
+		alert(x+","+y); */
+		
+		//设置图片的坐标
+/* 		$("img").offset({
+			left:200
+			top:500
+		}); */
+		
+		//获取图片的宽高
+/* 		var w=$("img").width();
+		var h=$("img").heigth();
+		alert(w+":"+h); */
+		
+		//设置图片的宽高
+		$("img").width(500);
+		$("img").heigth(500);
+		
+	</script>
+  
+  </body>
+</html>
+
+
+

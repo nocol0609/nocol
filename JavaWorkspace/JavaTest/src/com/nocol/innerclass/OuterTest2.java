@@ -1,0 +1,51 @@
+package com.nocol.innerclass;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+/*  
+ * 匿名内部类面试题： 按照要求，补齐代码 
+ *             
+ * interface Inter1 { 
+ * 		void show();               //默认 public abstract void show();
+ * } 
+ * class Outer7 { //补齐代码 }
+ * 
+ * class OuterTest2 { 
+ * 		public static void main(String[] args) {
+ *           	Outer7.method().show(); 
+ *        } 
+ *   } 
+ *   
+ *   要求在控制台输出”HelloWorld”
+ */
+interface Inter1 {
+	void show();
+	// public abstract
+}
+
+class Outer7 {
+	// 补齐代码
+	public static Inter1 method() {     //接口作为返回值，实际返回该接口实现类的对象，刚好就是匿名内部类
+		// 子类对象 -- 子类匿名对象
+		return new Inter1() {
+			public void show() {
+				System.out.println("HelloWorld");
+			}
+		};
+	}
+}
+
+class OuterTest2 {
+	public static void main(String[] args) {
+		Outer7.method().show();
+		/*
+		 * 1:Outer7.method()可以看出method()应该是Outer中的一个 静态方法。
+		 * 2:Outer7.method().show()可以看出method()方法的返回值是一个对象。
+		 * 又由于接口Inter1中有一个show()方法,所以我认为method()方法的返回值类型是一个接口。
+		 */
+	}
+}

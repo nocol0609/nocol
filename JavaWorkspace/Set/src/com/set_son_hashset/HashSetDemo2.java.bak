@@ -1,0 +1,38 @@
+package com.set_son_hashset;
+
+import java.util.HashSet;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ * 需求：存储自定义对象，并保证元素的唯一性
+ * 要求：如果两个对象的成员变量值都相同，则为同一个元素。
+ * 
+ */
+public class HashSetDemo2 {
+	public static void main(String[] args) {
+		//创建集合对象
+		HashSet<Student> hs=new HashSet<Student>();
+		//创建学生对象
+		Student s1=new Student("java",27);
+		Student s2=new Student("jsp",28);
+		Student s3=new Student("java",27);
+		Student s4=new Student("java",30);
+		Student s5=new Student("xml",27);
+		//添加学生对象到集合
+		hs.add(s1);
+		hs.add(s2);
+		hs.add(s3);
+		hs.add(s4);
+		hs.add(s5);
+		//遍历集合
+		for(Student s:hs){
+			System.out.println(s.getName()+"-----"+s.getAge());
+		} 
+		
+	}
+}

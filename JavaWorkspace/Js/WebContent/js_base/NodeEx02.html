@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>form.html</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+	   <form name="form1" action="test.html" method="post" >
+  	   	  <input type="text" name="tname" value="传智播客5周年_1"  id="tid_1"  ><br>
+		  <input type="text" name="tname" value="传智播客5周年_2"  id="tid_2"  ><br>
+		  <input type="text" name="tname" value="传智播客5周年_3"  id="tid_3"  ><br>
+		  <input type="button" name="ok" value="保存1"/>
+  	   </form>
+	   
+	   <ul>
+	   	 <li id="bj" value="beijing">
+	   	 	北京
+			<p>
+				  海淀
+		    </p>
+			奥运
+	   	 </li>
+		 <li id="sh" value="shanghai">上海</li>
+	   </ul>
+	  
+  </body>
+  
+  <script language="JavaScript">
+  	//打印出 id="bj" 该节点的所有子节点的(nodeName, nodeType, nodeValue)
+	 var bjElement=document.getElementById("bj");
+//	 alert(bjElement.childNodes[0].nodeName);
+//	 alert(bjElement.childNodes[0].nodeType);
+//	 alert(bjElement.childNodes[0].nodeValue);
+//	 
+//	 alert(bjElement.childNodes[1].nodeName);
+//	 alert(bjElement.childNodes[1].nodeType);
+//	 alert(bjElement.childNodes[1].nodeValue);
+//	 
+//	 
+//	 alert(bjElement.childNodes[2].nodeName);
+//	 alert(bjElement.childNodes[2].nodeType);
+//	 alert(bjElement.childNodes[2].nodeValue);
+	
+	
+    //同时打印文本值  北京 海淀  奥运 
+	
+	 alert(bjElement.childNodes[0].nodeValue);//
+	 alert(bjElement.childNodes[1].childNodes[0].nodeValue);
+	 alert(bjElement.childNodes[2].nodeValue);
+	
+	
+  </script>
+  
+  
+  
+  
+</html>

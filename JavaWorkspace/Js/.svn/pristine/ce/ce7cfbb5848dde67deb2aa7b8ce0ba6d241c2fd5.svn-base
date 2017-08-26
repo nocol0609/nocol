@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>First jQuery</title>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		//传统方式
+		/* var inputElement = document.getElementById("inputID");
+		var value = inputElement.value;
+		alert(value); */
+		
+		var $inputElement=$("#inputID");
+		var value = $inputElement.val();
+		alert(value);
+		
+		var $inputElement=$("#divID");
+		var value = $inputElement.html();
+		alert(value);
+		
+	}
+</script>
+</head>
+<body>
+	<input id="inputID" type="button" value="这是jQuery库" />
+
+	<div id="divID">哈哈哈</div>
+</body>
+</html>

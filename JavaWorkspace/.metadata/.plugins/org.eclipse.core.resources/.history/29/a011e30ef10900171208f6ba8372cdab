@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript">
+
+/* function showDate() {
+	for(var i=0;i<2;i++){
+		window.open("date.html");
+	}
+} 
+function small(){
+	resizeTo(300,200); //相对于原本窗口改变指定的大小。	
+} */
+
+function showTime(){
+	var timeSpan = document.getElementById("timeSpan");
+	var date  = new Date().toLocaleString();
+	timeSpan.innerHTML = date.fontcolor("red");
+}
+function hideTime() {
+	var timeSpan=document.getElementById("timeSpan");
+	timeSpan.innerHTML="";
+}
+ 
+function showInfo() {
+	var userName=document.getElementById("userName");
+	userName.innerHTML="用户名不能为空";
+} 
+ 
+ 
+</script>
+
+</head>
+<body>
+	<input type="button" value="下载" onclick="showDate()"/>
+	<input type="button" value="变小" onclick="small()"/>
+	<span onmousemove="showTime()" onmouseout="hideTime()" >查看当前系统时间：</span><span id="timeSpan"></span>
+	用户名<input type="text" onfocus="showInfo()" onblur="hideInfo()"/><span id="userName"></span>
+</body>
+</html>

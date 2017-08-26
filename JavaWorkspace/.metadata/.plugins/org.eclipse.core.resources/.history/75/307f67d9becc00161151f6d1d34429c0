@@ -1,0 +1,40 @@
+package com.briup.server;
+
+import com.briup.bean.UserBean;
+import com.briup.dao.IUserDao;
+import com.briup.dao.UserDaoImpl;
+
+/**
+* @author lxp
+*
+* @TODO 业务逻辑实现类
+* 
+*/
+
+public class UserServerImpl implements IUserServer {
+	private IUserDao dao;
+	//登录业务逻辑处理
+	@Override
+	public String login(String name) {
+		String result=null;
+		// TODO Auto-generated method stub
+		dao=new UserDaoImpl();
+		UserBean user=dao.findUserByName(name);
+		if(user==null){
+			result= "用户名不存在";
+		}else{
+			f(user.getPasswd.equals(passwd)){
+				result="登录成功";
+			} 
+		}
+		return result;
+	}
+
+	@Override
+	public void register(UserBean user) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

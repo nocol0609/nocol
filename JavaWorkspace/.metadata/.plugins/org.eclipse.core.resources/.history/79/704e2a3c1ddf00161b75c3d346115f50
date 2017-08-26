@@ -1,0 +1,33 @@
+package com.nocol_03;
+
+import java.util.Scanner;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ * 把字符串反转
+ */
+public class StringBufferTest3 {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("请输入字符串：");
+		String s=sc.nextLine();
+		
+		//用String反转法
+		//用StringBuffer反转法
+	}
+	//String功能
+	public static String myReverse(String s){
+		
+		String s1="";
+		char[] chs=s.toCharArray();
+		for(int x=chs.length-1;x>=0;x--){
+			s1+=chs[x];
+		}
+		return s1;	
+	}
+}

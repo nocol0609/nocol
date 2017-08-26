@@ -1,0 +1,6 @@
+defaultTernModules=guess-types,outline,browser,ecma5,browser-extension,chrome-apps,chrome-extension,complete_strings,extjs4.2.1,gas
+eclipse.preferences.version=1
+loadingLocalPlugin=false
+repositories=
+traceOnConsole=false
+used-repository-name=default

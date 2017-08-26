@@ -1,0 +1,39 @@
+package com.xml.sax;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+//定义DefaultHander子类
+class MyHander extends DefaultHandler{
+	
+	
+	
+	
+}
+
+public class SAX_Xml {
+	public static void main(String[] args) throws Exception{
+		//创建SAXPaser对象
+		SAXParser parser=SAXParserFactory.newInstance().newSAXParser();
+		
+		//调用paser方法
+		/**
+		 * 参数一：xml文档
+		 * 参数二：DefaultHander的子类
+		 */
+		parser.parse(new File("student.xml"), new MyHander()); 
+		
+	}
+	
+	
+}

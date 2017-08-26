@@ -1,0 +1,27 @@
+package  com.nocol.common;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class JDBCTemplate {  
+	 private Connection conn;
+	 public JDBCTemplate(){
+		 this(null);
+	 } 
+	 public JDBCTemplate(Connection conn){
+		 if(conn==null){
+			 this.conn=ConnectionFactory.getConnection();
+		 }else{
+			 this.conn=conn;
+		 }	 
+	 }
+
+	 //有输入集，有结果集
+	 public void execute(String sql,){
+		 PreparedStatement pst=null;
+		 pst=conn.prepareStatement(sql);
+		 
+		 pst.executeQuery();
+	 }
+	 
+}

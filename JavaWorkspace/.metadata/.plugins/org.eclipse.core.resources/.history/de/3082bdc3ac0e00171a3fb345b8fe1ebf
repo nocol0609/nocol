@@ -1,0 +1,16 @@
+package com.nocol.io;
+
+import java.io.File;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class FileTest {
+	public static void main(String[] args) throws Exception{
+		File file=new File("I:\\JavaWorkspace\\Test\\a.txt");
+		File file2=new File("b.txt");
+	}
+}

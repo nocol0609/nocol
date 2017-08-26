@@ -1,0 +1,18 @@
+package com.briup.server;
+
+import com.briup.bean.UserBean;
+
+/**
+* @author lxp
+*
+* @TODO 业务逻辑层接口
+* 
+*/
+
+public interface IUserServer {
+	//处理登录逻辑
+	void login(String name);
+	//处理注册逻辑
+	void register(UserBean user);
+
+}

@@ -1,0 +1,32 @@
+package  com.nocol.common;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class JDBCTemplate {  
+	 private Connection conn;
+	 public JDBCTemplate(){
+		 this(null);
+	 } 
+	 public JDBCTemplate(Connection conn){
+		 if(conn==null){
+			 this.conn=ConnectionFactory.getConnection();
+		 }else{
+			 this.conn=conn;
+		 }	 
+	 }
+
+	 //有输入集，有结果集
+	 public void execute(String sql,PreSetter ps,Handler handler){
+		 PreparedStatement pst=null;
+		 try {
+			pst=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	 }
+	 
+}

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<style type="text/css">
+.myClass {
+	color: inactivecaption
+}
+</style>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+</head>
+<body>
+	<table border="1" align="center">
+		<tr>
+			<th>用户名</th>
+			<td><input type="text" value="输入用户名" /></td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		$(function() {
+			$(":text").addClass("myClass");
+		})
+	</script>
+
+	<script type="text/javascript">
+		$(function() {
+			$(":text").focus(function() {
+
+				$(":text").val("");
+
+				$(":text").removeClass("myClass");
+			});
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(":text").blur(function() {
+			//获取框年内内容
+			var content = $(":text").val();
+			//去空格
+			content = $.trim(content);
+			if (content.length == 0) {
+				$(":text").val("输入用户名");
+				$(":text").addClass("myClass");
+			}
+		});
+	</script>
+
+</body>
+</html>
+
+
+

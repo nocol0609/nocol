@@ -1,0 +1,26 @@
+package com.briup.dao;
+
+import com.briup.bean.UserBean;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class UserDaoImpl implements IUserDao {
+ //根据用户名查找用户
+	@Override
+	public UserBean findUserByName(String name) {
+		String sql="select * from tbl_user where name=?";
+
+		return null;
+	}
+
+	@Override
+	public void saveUser(UserBean user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

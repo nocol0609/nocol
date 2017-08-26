@@ -1,0 +1,21 @@
+package com.nocol.common;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
+
+public class CloseUtils {
+	public static void closeResource(Connection conn,Properties p,ResultSet rs) {
+		if(rs!=null)
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	
+	} 
+}

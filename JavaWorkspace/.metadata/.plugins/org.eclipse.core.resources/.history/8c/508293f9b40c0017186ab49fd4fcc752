@@ -1,0 +1,38 @@
+package com.xml.doom4j.write;
+
+import java.io.File;
+import java.io.FileOutputStream;
+
+import org.dom4j.Document;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Demo {
+	public static void main(String[] args) throws Exception {
+		// 读取要输出的xml的document对象
+		Document document = new SAXReader().read(new File("./src/contact.xml"));
+		
+		
+		
+		
+		
+		
+		
+		
+		// 创建输出的文件
+		FileOutputStream out = new FileOutputStream("out.xml");
+		// 创建写出对象
+		XMLWriter writer = new XMLWriter(out);
+		// 将document对象写出
+		writer.write(document);
+		// 关闭流
+		writer.close();
+
+	}
+}

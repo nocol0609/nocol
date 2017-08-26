@@ -1,0 +1,38 @@
+package com.nocol_03;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ * 两种方式（String/StringBuffer）把数组拼接成一个字符串
+ */
+public class StringBufferTest2 {
+	public static void main(String[] args) {
+		//定义数组
+		int[] arr = { 44, 33, 55, 11, 22 };
+		
+		//调用String功能实现拼接
+		String result1=StringBufferTest2.arrToString(arr);
+		System.out.println("用String拼接法结果："+result1 );
+		//调用StringBuffer功能实现拼接
+	}
+	//String拼接方法
+	public static String arrToString(int[] arr){
+		String s1="";
+		s1+="[";
+		
+		//遍历数组并拿到每一个字符
+		for(int x=0;x<arr.length;x++){
+			if(x==arr.length-1){
+				s1+=arr[x];
+				s1+="]";
+			}else{
+				s1+=arr[x];
+				s1+=", ";
+			}
+		}
+		return s1;
+	}
+}

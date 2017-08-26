@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>增加人员</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  	<link rel="stylesheet" href="../themes/default/easyui.css" type="text/css"></link>
+    <link rel="stylesheet" href="../themes/icon.css" type="text/css"></link>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+  </head>
+  <body>
+	
+	
+	<form>
+		<table border="2" align="center">
+			<tr>
+				<th>姓名：</th>
+				<td><input id="nameID" type="text"/></td>
+			</tr>
+			<tr>
+				<th>入职时间：</th>
+				<td><input id="dateID" type="text"/></td>
+			</tr>
+		</table>
+	</form>
+
+	<script type="text/javascript">
+		$("#nameID").validatebox({
+
+			validType : ['length[1,6]','zhongwen']
+		});
+	</script>
+	<script type="text/javascript">
+		$.extend($.fn.validatebox.defaults.rules, {    
+		    zhongwen: {  
+		        validator: function(value){   
+		        	if(/^[\u3220-\uFA29]*$/.test(value)){
+			            return true;    
+		        	}
+		        }, 
+		        message: '姓名必须为中文'   
+		    }    
+		});  
+	</script>
+	<script type="text/javascript">
+		$("#dateID").datebox({
+			
+		});
+	</script>
+	
+	
+  </body>
+</html>
+
+
+
+

@@ -1,0 +1,69 @@
+package com.nocol.collection;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+class Student2 {
+	private String name;
+	private int age;
+	private int score;
+
+	public Student2() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student2(String name, int age, int score) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.score = score;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	@Override
+	public String toString() {
+		return "Student2 [name=" + name + ", age=" + age + ", score=" + score + "]";
+	}
+
+}
+
+public class MapTest {
+	public static void main(String[] args) {
+		Map<Student2, Integer> map=new HashMap<Student2,Integer>();
+		
+		Student2 s1=new Student2("tom",20,90);
+		Student2 s2=new Student2("jack",21,95);
+		Student2 s3=new Student2("rose",22,92);
+		Student2 s4=new Student2("tom",20,95);
+	}
+}

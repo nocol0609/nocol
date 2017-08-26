@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//libs/ojdbc6_g.jar=UTF-8
+encoding//src/com/nocol/common/ConnectionFactory.java=UTF-8
+encoding//src/com/nocol/common/JDBCTemplate.java=UTF-8
+encoding//src/com/nocol/common/PreSetter.java=UTF-8

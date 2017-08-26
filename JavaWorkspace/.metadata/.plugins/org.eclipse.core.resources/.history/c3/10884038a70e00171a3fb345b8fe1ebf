@@ -1,0 +1,12 @@
+package com.nocol.io;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class ReaderTest {
+	public static void main(String[] args) {
+		
+	}
+}

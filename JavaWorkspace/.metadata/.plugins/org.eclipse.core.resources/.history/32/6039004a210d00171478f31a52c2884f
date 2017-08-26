@@ -1,0 +1,45 @@
+package com.briup.sendtest;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PipedOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.briup.bean.BIDR;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class SendTest {
+
+}
+
+class Sender extends Thread {
+
+	PipedOutputStream pos = null;
+
+	public Sender(PipedOutputStream pos, String name) {
+		this.pos = pos;
+		setName(name);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		List<BIDR> list=new ArrayList<BIDR>();
+		
+		try {
+			ObjectOutputStream oos=new ObjectOutputStream(pos);
+			oos.writeObject(list);
+			oos.flush();
+					
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

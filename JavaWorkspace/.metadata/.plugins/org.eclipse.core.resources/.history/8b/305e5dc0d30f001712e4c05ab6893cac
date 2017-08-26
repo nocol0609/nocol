@@ -1,0 +1,10 @@
+package com.template;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class hello extends HttpServlet  {
+
+}

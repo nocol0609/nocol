@@ -1,0 +1,89 @@
+package com.nocol.jdbc;
+
+import oracle.jdbc.OracleDriver;
+import oracle.jdbc.driver.*;
+import oracle.net.aso.p;
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
+
+/*
+ * 
+ * @author xx
+ * 2016-12-27
+ * TODO JDBC的六大步骤
+ * 
+ */
+public class JDBCStep {
+	
+	public static void main(String[] args){
+		Connection connect=null;
+		Statement state=null;
+		ResultSet rs=null;
+		
+		try {
+			//第一步：注册驱动
+			//第一种方式：类加载(常用)
+			Class.forName("oracle.jdbc.OracleDriver");
+			//第二种方式：利用Driver对象
+			Driver driver=new OracleDriver();
+			DriverManager.deregisterDriver(driver);
+			//第三种方式：利用系统参数
+			//-Djdbc.drivers=oracle.jdbc.OracleDriver
+			
+			//第二步：获取连接
+			//第一种方式：利用DriverManager
+			//1*connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","123");
+			//第二种方式：直接利用Driver
+			Properties pro=new Properties();
+			pro.put("user", "system");
+			pro.put("password", "123");
+			connect=driver.connect("jdbc:oracle:thin:@localhost:1521:XE", pro); 
+			System.out.println(connect);
+			
+			
+			//第三步：获取执行sql语句的对象
+			//第一种：statement(无输入值时使用)
+			// state = connect.createStatement();
+			 //第二种：prepareStatement（有输入值时使用）
+			 PreparedStatement preState= connect.prepareStatement("select * from tbl_dept where id=?");
+			 
+			//执行sql语句
+			// rs = state.executeQuery("select * from tbl_dept");
+			 preState.setInt(1, 2);
+			 rs=preState.executeQuery();
+			 
+			//处理结果集
+			while(rs.next()){
+				int id=rs.getInt("id");
+				String name=rs.getString("name");
+				String city=rs.getString("city");
+				System.out.println(id+" "+name+" "+city);
+			}
+								
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			//关闭资源
+			
+				try {
+					if (rs != null ) rs.close();
+					if(state!=null) state.close();
+					if(connect!=null) connect.close(); 
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+	}  
+}

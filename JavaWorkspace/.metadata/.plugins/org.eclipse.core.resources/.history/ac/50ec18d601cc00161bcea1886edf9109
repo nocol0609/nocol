@@ -1,0 +1,13 @@
+package com.nocol.common;
+/**
+* @author lxp
+*
+* @TODO 获取连接对象的工厂类
+* 
+*/
+public class ConnectionFactory {
+	 private static String DRIVER;
+	 private static String URL;
+	 private static String USER;
+	 private static String PASSWORD;
+}

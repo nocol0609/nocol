@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>进度条</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--引入css文件 顺序不限  -->
+<link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="themes/icon.css" type="text/css"></link>
+<!--引入js文件 顺序有限  -->
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript" src="jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui-lang-zh_CN.js"></script>
+<!-- 所有的css文件和的有的js文件位置不限 -->
+</head>
+<body>
+	<div id="p" style="width:400px;"></div> 
+	<script type="text/javascript">
+		$("#p").progressbar({
+			width : 1300,
+			height : 10,
+			value : 0
+		});
+	</script>	
+	
+	<input id="startID" type="button" value="开始""/>
+	
+	<script type="text/javascript">
+		//获取1到9之间的随机数，包含1和9
+		function getNum(){
+			return Math.floor(Math.random()*9)+1;
+		}
+	</script>
+	<script type="text/javascript">
+		var timeID = null;
+		//函数
+		function update(){
+			//获取随机值,例如：3
+			var num = getNum();
+			//获取进度条当前值，例如：99
+			var value = $("#p").progressbar("getValue");
+			//判断
+			if(value + num > 100){
+				//强行设置进度条的当前值为100
+				$("#p").progressbar("setValue",100);
+				//停止定时器
+				window.clearInterval(timeID);
+				//按钮正效
+				$("#startID").removeAttr("disabled");
+			}else{
+				//设置进度条的当前值为num+value的和
+				$("#p").progressbar("setValue",(value+num));
+			}
+		}
+		//定拉按钮，同时提供单击事件
+		$("#startID").click(function(){
+			//每隔300毫秒执行update方法
+			timeID = window.setInterval("update()",300);
+			//按钮失效
+			$(this).attr("disabled","disabled");
+		});
+	</script> 
+	
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+package com.dom4j;
+
+import java.io.File;
+
+import org.dom4j.Document;
+import org.dom4j.io.SAXReader;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Dom4jTest {
+	
+	public void test() throws Exception {
+		//创建xml解析器
+		SAXReader reader=new SAXReader();
+		//读取xml文件并返回根节点对象
+		Document document=reader.read(new File("./src/contact.xml"));
+		System.out.println(document);
+	}
+}

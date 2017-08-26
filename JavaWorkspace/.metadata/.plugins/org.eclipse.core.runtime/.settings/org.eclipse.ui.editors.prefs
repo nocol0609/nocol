@@ -1,0 +1,9 @@
+AbstractTextEditor.Color.Background=199,237,204
+AbstractTextEditor.Color.Background.SystemDefault=false
+AbstractTextEditor.Color.Foreground.SystemDefault=true
+eclipse.preferences.version=1
+hyperlinkColor.SystemDefault=true
+lineNumberColor=29,211,175
+lineNumberRuler=true
+overviewRuler_migration=migrated_3.1
+spellingEngine=org.eclipse.jdt.internal.ui.text.spelling.DefaultSpellingEngine

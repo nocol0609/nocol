@@ -1,0 +1,19 @@
+package com.briup.gather;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Gather {
+	public static void main(String[] args) throws Exception {
+		FileReader reader = new FileReader("radwtmp_test");
+		BufferedReader br = new BufferedReader(reader);
+		String string = br.readLine();
+		System.out.println(string);
+	}
+}

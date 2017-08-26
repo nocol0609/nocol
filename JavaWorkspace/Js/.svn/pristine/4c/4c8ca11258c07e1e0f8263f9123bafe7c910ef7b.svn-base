@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<form name="form1" action="" method="post">
+		患者姓名:<input type="text" name="name" /> 
+		<input type="button" value="打印患者信息" onclick="printPerson()" /> 
+		<input type="button" value="查询患者信息" onclick="selectPerson()" />
+	</form>
+</body>
+<script type="text/javascript">
+	//通过javaScript函数的方式访问printPerson.html和selectPerson.html
+	function printPerson() {
+		var formElemen = document.forms[0];
+		formElemen.action = "print.html";
+		formElemen.method = "post";
+		formElemen.submit();
+	}
+
+	function selectPerson() {
+		var formElemen = document.forms[0];
+		formElemen.action = "select.html";
+		formElemen.method = "get";
+		formElemen.submit();
+	}
+</script>
+</html>

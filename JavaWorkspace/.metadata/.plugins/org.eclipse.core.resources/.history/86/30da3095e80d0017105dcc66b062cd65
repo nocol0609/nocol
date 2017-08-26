@@ -1,0 +1,29 @@
+package com.nocol.collection;
+
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class ArrayListTest {
+	private static int N = 50000;
+	private static List<Integer> val;
+
+	static {
+		Integer[] iarray = new Integer[N];
+		val = Arrays.asList(iarray);
+		for (int i = 0, count = 0; i < iarray.length; i++) {
+			iarray[i] = count;
+			count = (int) (Math.random() * 100) + 1;
+		}
+
+	}
+
+	public static void main(String[] args) {
+
+	}
+}

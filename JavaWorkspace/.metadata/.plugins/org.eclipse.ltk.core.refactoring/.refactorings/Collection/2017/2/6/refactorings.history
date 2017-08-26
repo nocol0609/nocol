@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Collection/day18作业.txt&apos; to &apos;集合相关.txt&apos;" description="Rename resource &apos;day18作业.txt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="day18作业.txt" name="集合相关.txt" stamp="1486570003770" updateReferences="true"/>
+</session>

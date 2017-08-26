@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function setText() {
+	var inputNode=document.getElementById("userName");
+	inputNode.value="文本已设置";
+}
+
+function showImag() {
+	var imags=document.getElementsByTagName("img");
+	for (var i = 0; i < imags.length; i++) {
+		imags[i].src="a.jpg";
+		imags[i].width="100";
+		imags[i].height="100";
+	}
+}
+function showDiv() {
+	var divNode=document.getElementsByName("info");
+	for (var i = 0; i < divNode.length; i++) {
+		divNode[i].innerHTML="哈哈哈";
+	}
+}
+
+
+</script> 
+</head>
+<body>
+<input type="text" id="userName"/><input type="button" value="设置文本值" onclick="setText()"/>
+<hr/>
+
+<img src="">
+<img src="">
+<img src="">
+<input type="button" value="显示图片" onclick="showImag()"/>
+<hr/>
+<div name="info"></div>
+<div name="info"></div>
+<div name="info"></div>
+<input type="button" value="设置Div内容" onclick="showDiv()"/>
+</body>
+</html>

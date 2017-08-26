@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>下载页面</title>
+<script type="text/javascript">
+	function start() {
+		var formElement = document.getElementById('download');
+		formElement.action = "download.action?name=haozip_v5.9.2.exe";
+		formElement.method = "get";
+		formElement.submit();
+	}
+</script>
+
+</head>
+<body>
+     <form action="#" method="get"> 
+		好压下载链接：<a href="download.action?name=haozip_v5.9.2.exe">haozip_v5.9.2.exe</a>
+	</form>   
+	
+	<!-- <form action="download.action?name=haozip_v5.9.2.exe" method="get" id="download">
+		好压下载链接：<a href="#" onclick="document.getElementById('download').submit()">haozip_v5.9.2.exe</a>
+	</form> -->
+	<!-- <form id="download">
+		好压下载链接：<a href="#" onclick="start()">haozip_v5.9.2.exe</a>
+	</form> -->
+	<!-- 
+	 <form action="download.action?name=haozip_v5.9.2.exe" method="get"> 
+		好压下载链接：<a href="#">haozip_v5.9.2.exe</a>
+		<input type="submit" value="点击下载"/>  -->
+	</form>
+</body>
+</html>

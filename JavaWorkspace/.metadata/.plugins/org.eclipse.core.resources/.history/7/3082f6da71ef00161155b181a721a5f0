@@ -1,0 +1,27 @@
+package com.nocol.test1;
+
+import java.lang.reflect.Method;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+ * √Ê ‘Ã‚£∫
+ */
+public class Test3 {
+	public static void main(String[] args) {
+		int a=10;
+		int b=10;
+		Method(a,b);
+		System.out.println("a="+a);
+		System.out.println("b="+b);
+	}
+
+	private static void Method(int a, int b) {
+		// TODO Auto-generated method stub
+		System.out.println("a=100,b=200");
+	}
+}

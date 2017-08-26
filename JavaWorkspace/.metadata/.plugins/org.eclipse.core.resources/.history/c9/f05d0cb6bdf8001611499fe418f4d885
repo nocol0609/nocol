@@ -1,0 +1,40 @@
+package com.nocol.login;
+
+import java.io.IOException;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class LoginServlet extends HttpServlet{
+	
+	private static final long serialVersionUID = 1L;
+	
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		//获取用户名
+		String name=request.getParameter("username"); 
+		//获取用户密码
+		String pwd=request.getParameter("password");
+		
+		System.out.println("username=="+new String(name.getBytes()));
+		System.out.println("password=="+pwd);
+		
+		if("abc".equals(name)&&"123".equals(pwd)){
+			response.getOutputStream().write("sucess".getBytes());
+		}else {
+			response.getOutputStream().write("login fail".getBytes());
+		}
+	}
+	
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		System.out.println("post方式提交");
+		doGet(request, response);
+	}
+	
+}

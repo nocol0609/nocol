@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	 正则表达式的创建方式：
+	 ""	
+	 方式1：
+	 /正则表达式/模式
+	
+	 方式2：
+	 new RegExp("正则表达式",模式);
+	
+	 正则表达式对象常用的方法：
+	 test()  使用正则对象去匹配字符串  如果匹配成功返回ture，否则返回false.	
+	 exec()  根据正则表达式去查找字符串符合规则的内容。
+
+	 模式：
+	 g （全文查找出现的所有 pattern） 	
+	 i （忽略大小写）
+
+	 var str = "hello123";
+	 var reg = /^[A-Z0-9]+$/i;
+	 alert("匹配吗？"+reg.test(str));	
+
+	 查找出三个字符组成的单词。
+	 */
+	/* var str = "da hju ki loi gfy o iu gdy";
+	var reg = /\b[a-z]{3}\b/gi;
+	var len = "";
+	while ((len = reg.exec(str)) != null) {
+		document.write(len + "</br>");
+	} */
+
+	//校验姓名
+	function checkName() {
+		//找到标签
+		var nameNode = document.getElementById("userName");
+		//找到正则位置
+		var nameSpan = document.getElementById("userId");
+		//获取输入的姓名
+		var userName = nameNode.value;
+		//定义规则
+		var nameReg = /^[a-z][a-z0-9]{5}$/i
+		if (nameReg.test(userName)) {
+			nameSpan.innerHTML = "正确".fontcolor("green");
+			return true;
+		} else {
+			nameSpan.innerHTML = "错误".fontcolor("red");
+			return false;
+		}
+	}
+	//校验密码
+	function checkPass() {
+		//获取密码
+		var password = document.getElementById("pwd").value;
+		//找到正则位置
+		var passSpan = document.getElementById("passId");
+		//定义规则
+		var passReg = /^[a-z0-9]+$/i
+		if (passReg.test(password)) {
+			passSpan.innerHTML = "正确".fontcolor("green");
+			return true;
+		} else {
+			passSpan.innerHTML = "错误".fontcolor("red");
+			return false;
+		}
+	}
+	//确认密码校验
+	function ensurepass() {
+		//获取密码
+		var ensurepwd = document.getElementById("ensurepwd").value;
+		//获取正则位置
+		var enpwdSpan = document.getElementById("ensure");
+		if (ensurepwd == document.getElementById("pwd").value) {
+			enpwdSpan.innerHTML = "正确".fontcolor("green");
+			return true;
+		} else {
+			enpwdSpan.innerHTML = "错误".fontcolor("red");
+			return false;
+		}
+	}
+	//校验邮箱
+	function checkEmail() {
+		//获取输入的邮箱
+		var emailNode = document.getElementById("email");
+		//找到正则位置
+		var EmailSpan = document.getElementById("emailspan");
+		//获取内容
+		var Email = emailNode.value;
+		//定义规则         123456@qq.com       123456@qq.com.cn      nkzp7784@163.com
+		//var emailReg = /^[a-z0-9]\w+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/i;
+		var emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/i;
+		if (emailReg.test(Email)) {
+			EmailSpan.innerHTML = "正确".fontcolor("green");
+			return true;
+		} else {
+			EmailSpan.innerHTML = "错误".fontcolor("red");
+			return false;
+		}
+	}
+	//提交表单
+	function checkAll() {
+		if (checkName() && checkEmail() && checkPass() && ensurepass()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<form action="success.html" method="post" onsubmit="return checkAll()">
+		<!--如果表单提交时候触发的方法返回是false,那么该表单不允许提交，如果返回的是true允许提交 -->
+		<table border="1px" width="50%" align="center" cellspacing="0px"
+			cellpadding="3px">
+			<tr>
+				<td width="25%">姓名:</td>
+				<td><input type="text" name="userName" id="userName"
+					onblur="checkName()" /> <span id="userId"></span></td>
+			</tr>
+			<tr>
+				<td>密码:</td>
+				<td><input type="password" name="pwd" id="pwd"
+					onblur="checkPass()" /> <span id="passId"></span></td>
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td><input type="password" name="ensurepwd" id="ensurepwd"
+					onblur="ensurepass()" /> <span id="ensure"></span></td>
+			</tr>
+			<tr>
+				<td>邮箱</td>
+				<td><input type="text" name="email" id="email"
+					onblur="checkEmail()" /> <span id="emailspan"></span></td>
+			</tr>
+			<tr>
+				<td>性别</td>
+				<td><input type="radio" checked="ture" name="gender" id="male"
+					value="male" /> 男 <input type="radio" name="gender" value="female" />
+					女</td>
+			</tr>
+			<tr>
+				<td>爱好:</td>
+				<td><input type="checkbox" name="like"/> eat <input
+					type="checkbox" name="like" /> sleep <input type="checkbox"
+					name="like" /> play <span id="hobbySpan"></span></td>
+			</tr>
+			<tr>
+				<td>城市</td>
+				<td><select name="city" id="city">
+						<option value="">请选择</option>
+						<option value="bj">北京</option>
+						<option value="gz">广州</option>
+						<option value="sh">上海</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>自我介绍</td>
+				<td><textarea cols="15" rows="5" name="myInfo" id="myInfo"></textarea></td>
+			</tr>
+			<tr align="center">
+				<td colspan="2">
+					<!--提交按钮--> <input type="submit" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>

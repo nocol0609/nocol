@@ -1,0 +1,10 @@
+package com.xml.dom4j.read;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class Contact {
+
+}

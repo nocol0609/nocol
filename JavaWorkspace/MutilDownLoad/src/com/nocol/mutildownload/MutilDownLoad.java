@@ -1,0 +1,178 @@
+package com.nocol.mutildownload;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+
+public class MutilDownLoad {
+	
+	//获取文件下载路径
+	public static String path = "http://192.168.56.1:8080/haozip.exe";
+	// 定义线程个数
+	public static int ThreadCount = 3;
+
+	// ===定义正在运行的线程===
+	public static int RunningThread;
+
+	public static void main(String[] args) throws Exception {
+		// 连接服务器，获取下载的文件长度
+		// 创建URL对象
+		URL url = new URL(path);
+		// 获取连接对象
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		// 设置请求数据的方式
+		conn.setRequestMethod("GET");
+		// 设置请求超时时间
+		conn.setReadTimeout(5000);
+		// 获取服务器状态码
+		int code = conn.getResponseCode();
+		if (code == 200) {
+			// 获取文件实际长度
+			int lenth = conn.getContentLength();
+
+			// ===将线程个数赋值给正在运行的线程====
+			RunningThread = ThreadCount;
+
+			// 创建要下载文件的文件空间
+			RandomAccessFile raf = new RandomAccessFile(getName(path), "rw");
+			// 指定该空间的长度(和要下载的文件的长度相同)
+			raf.setLength(lenth);
+			raf.close();
+			// 设置每个线程要下载的文件长度
+			int blockSize = lenth / ThreadCount;
+			for (int ThreadId = 1; ThreadId <= ThreadCount; ThreadId++) {
+				// 设置没每个线程下载的开始位置
+				int startIndex = (ThreadId - 1) * blockSize;
+				int endIndex = startIndex + (blockSize - 1);
+				if (ThreadId == ThreadCount) {
+					endIndex = lenth;
+				}
+
+				System.out.println(ThreadId + "理论下载的大小：" + startIndex + "-----" + endIndex);
+
+				// 开启线程下载
+				DownLoadThread downLoadThread=new DownLoadThread(startIndex, endIndex, ThreadId);
+				downLoadThread.start();
+			}
+		}
+	}
+
+	// 创建线程下载文件
+	public static class DownLoadThread extends Thread {//静态内部类
+
+		private int startIndex;
+		private int endIndex;
+		private int ThreadId;
+
+		public DownLoadThread(int startIndex, int endIndex, int ThreadId) {
+			this.endIndex = endIndex;
+			this.startIndex = startIndex;
+			this.ThreadId = ThreadId;
+		}
+
+		@Override
+		public void run() {
+			try {
+				// 创建URL对象
+				URL url = new URL(path);
+				// 获取连接对象
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+				// 设置请求数据的方式
+				conn.setRequestMethod("GET");
+				// 设置请求超时时间
+				conn.setReadTimeout(5000);
+
+				// ==将记录线程位置 的文件封装成File对象
+				File file = new File(ThreadId + ".txt");
+				// ==下载前判断是否存在保存线程下载位置的文件来判断是否要进行断点续传
+				if (file.exists()) {
+					FileInputStream fis = new FileInputStream(file);
+					BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+					// 获取线程下载的最后的位置
+					String Lastpostion = br.readLine();
+					// 装换为int类型
+					int LastPositionn = Integer.parseInt(Lastpostion);
+					// 将该位置赋值给起始位置
+					startIndex = LastPositionn;
+					// 释放资源
+					fis.close();
+
+					System.out.println(ThreadId + "实际下载的大小：" + startIndex + "-----" + endIndex);
+				}
+
+				// 很重要：请求服务器下载部分的文件的指定的位置(请求头信息)  Range:作分段请求使用
+				conn.setRequestProperty("Range", "bytes=" + startIndex + "-" + endIndex);
+				// 获取服务器状态码
+				int code = conn.getResponseCode();
+				if (code == 206) {// 状态码=206表示请求部分资源成功
+					// 获取输入流对象
+					InputStream in = conn.getInputStream();
+					// 创建随机访问文件对象
+					RandomAccessFile raf = new RandomAccessFile(MutilDownLoad.getName(path), "rw");
+					// 指定线程下载文件的开始位置
+					raf.seek(startIndex);
+
+					// 将读取的文件写入创建的文件空间
+					int len = 0;
+					byte[] bys = new byte[1024*1024];
+
+					// ===定义当前线程下载的大小
+					int total = 0;
+
+					while ((len = in.read(bys)) != -1) {
+						raf.write(bys, 0, len);
+
+						// ==total即为每个线程从各自其实位置开始下载的文件大小
+						total += len;
+						// ==为实现断点续传，获取当前线程下载的位置
+						int CurrentThreadPosition = startIndex + total;
+						// ==将当前线程下载的位置记录下来（.txt文件）,定义随机访问而文件对象
+						// =="rwd" 打开以便读取和写入，对于 "rw"，还要求对文件内容的每个更新都同步写入到底层存储设备。
+						RandomAccessFile raff = new RandomAccessFile(ThreadId + ".txt", "rwd");
+						raff.write(String.valueOf(CurrentThreadPosition).getBytes());
+						raff.close();
+					}
+					// 释放资源
+					in.close();
+					raf.close();
+
+					System.out.println("线程" + ThreadId + "下载完成！");
+
+					// ===在每个线程下载完毕后将每个线程的".txt"文件删除，为避免并发操作,为删文件操作加锁====
+					synchronized (DownLoadThread.class) {
+						RunningThread--;// 线程下载完成后将不在运行，运行中的线程个数相应减少
+						if (RunningThread == 0) {// 当RunningThread个数为0时说明文件全部下载完成
+							for (int i = 1; i <= ThreadCount; i++) {
+								File deleteFile = new File(i + ".txt");
+								deleteFile.delete();
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	//获取源文件的文件名
+	public static String getName(String path){
+		//http://192.168.56.1:8080/haozip.exe
+		//获取"/"最后一次出现的索引
+		int index=path.lastIndexOf("/");
+		String name=path.substring(index+1);
+		return name;
+	}
+}

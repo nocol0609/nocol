@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<<!DOCTYPE students[
+	<!ELEMENT students ANY>
+	<!ELEMENT student(name,age,gender,adress,score,study)>
+	<!ELEMENT adress "南昌青山湖区双港东大街">
+]>>
+
+<students>
+	<student>
+		<name>jack</name>
+		<age>23</age>
+		<gender>male</gender>
+		<adress>&adress</adress>
+		<score>93</score>
+		<study>oracle</study>
+	</student>
+
+</students>

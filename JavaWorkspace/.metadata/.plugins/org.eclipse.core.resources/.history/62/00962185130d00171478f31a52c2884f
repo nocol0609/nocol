@@ -1,0 +1,35 @@
+package com.briup.gather;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
+import com.briup.bean.BIDR;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Gather {
+	public static void main(String[] args) throws Exception {
+		FileReader reader = new FileReader("radwtmp_test");
+		BufferedReader br = new BufferedReader(reader);
+		// String string = br.readLine();
+		String len = null;
+		String[] str = null;
+		BIDR bidr=null;
+		while ((len = br.readLine()) != null) {
+			str = len.split("[|]");
+			if ("7".equals(str[2])) {
+				//上线的时候创建对象
+				bidr=new BIDR();
+				bidr.setLogin_name(str[0]);
+				bidr.setNAS_IP(str[1]);
+				bidr.setLogin_ip(str[4]);
+			} else {
+				
+			}
+		}
+	}
+}

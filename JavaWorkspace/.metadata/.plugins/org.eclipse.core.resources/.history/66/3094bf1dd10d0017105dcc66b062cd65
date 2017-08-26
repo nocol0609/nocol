@@ -1,0 +1,22 @@
+package com.nocol.collection;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class EqualsTest {
+	public static void main(String[] args) {
+		int a=10;	
+		int b=20;
+		System.out.println(a==b);
+		
+		String s1="a";	
+		String s2="a";	
+		System.out.println(s1==s2);
+		
+		String s3=new String("b");
+		String s4=new String("b");
+		System.out.println(s3==s4);
+	}
+}

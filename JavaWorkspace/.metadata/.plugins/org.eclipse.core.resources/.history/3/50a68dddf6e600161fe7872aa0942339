@@ -1,0 +1,10 @@
+package com.jdk5_news;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public interface jump {
+
+}

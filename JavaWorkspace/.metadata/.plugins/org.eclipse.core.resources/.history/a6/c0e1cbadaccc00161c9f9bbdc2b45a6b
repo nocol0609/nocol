@@ -1,0 +1,10 @@
+package com.briup.server;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public interface IUserServer {
+
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>日期输入框</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--引入css文件 顺序不限  -->
+<link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="themes/icon.css" type="text/css"></link>
+<!--引入js文件 顺序有限  -->
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript" src="jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui-lang-zh_CN.js"></script>
+<!-- 所有的css文件和的有的js文件位置不限 -->
+</head>
+<body>
+ 入职时间：
+	<input id="dd" type="text"/>
+	<script type="text/javascript">
+		$("#dd").datebox({
+			
+		});
+	</script>
+	<script type="text/javascript">
+		$("#dd").datebox({
+			onSelect : function(date){
+				var year = date.getFullYear(); 
+				var month = date.getMonth() + 1;
+				var date = date.getDate();
+				alert(year+ "年" + month + "月" + date + "日");
+			}
+		});
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+

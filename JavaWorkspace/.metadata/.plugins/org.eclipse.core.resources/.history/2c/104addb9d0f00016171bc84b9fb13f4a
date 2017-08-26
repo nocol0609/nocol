@@ -1,0 +1,10 @@
+package com.tcp.upload_thread;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class UserThread {
+
+}

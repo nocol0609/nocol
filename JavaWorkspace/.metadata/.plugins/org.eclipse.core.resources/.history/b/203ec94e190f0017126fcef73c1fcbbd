@@ -1,0 +1,42 @@
+package com.noocl.triangle;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+/*
+ ======打印中正空三角形======
+             * 
+          *     * 
+       *           * 
+    *                 * 
+ *  *  *  *  *  *  *  *  * 
+
+ */
+public class Test8 {
+	public static void main(String[] args) {
+		for (int i = 1; i <= 5; i++) {
+			for (int j = i; j <= 4; j++) {
+				System.out.print("   ");
+			}
+			// 左半部分
+			for (int j = 1; j <= i; j++) {
+				if (i == 5 || j == 1 )//j==1表示接着空格后打印1个
+					System.out.print(" * ");
+				else
+					System.out.print("   ");
+			}
+			// 右半部分
+			for (int j = 1; j <= i - 1; j++) {
+				if (j == i - 1 || i == 5)
+					System.out.print(" * ");
+				else
+					System.out.print("   ");
+			}
+			System.out.println();
+		}
+
+	}
+}

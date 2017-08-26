@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function showCity() {
+		//定义二维数组存储城市
+		var citys = [ [], [ "南昌", "赣州", "上饶" ], [ "南京", "苏州", "常州" ],
+				[ "广州", "中山", "湛江" ] ];
+		//找到省份对应的节点
+		var provinceNode = document.getElementById("province");
+		//获取省份的索引
+		var selectIndex = provinceNode.selectedIndex;
+		//获取相应的城市
+		var cityDate = citys[selectIndex];
+		//获取城市的节点
+		var cityNode = document.getElementById("city");
+		
+		//添加城市之前将有的城市清空
+		//第一种方式（一直移除第一个，索引不递增）
+		/* var children=cityNode.childNodes;
+		for (var i = 0; i < children.length;) {
+			cityNode.removeChild(children[i]);
+		} */
+		//第二种方式（将cityNode里面创建的option长度设为0）
+		cityNode.options.length=0;
+		
+		//遍历城市创建对应的option
+		for (var i = 0; i < cityDate.length; i++) {
+			//创建option
+			var optionNode = document.createElement("option");
+			optionNode.innerHTML = cityDate[i];
+			cityNode.appendChild(optionNode);
+		}
+	}
+</script>
+</head>
+<body>
+	省份
+	<select id="province" onchange="showCity()">
+		<option>省份</option>
+		<option>江西</option>
+		<option>江苏</option>
+		<option>广东</option>
+	</select> 城市
+	<select id="city"><option>城市</option></select>
+
+</body>
+</html>

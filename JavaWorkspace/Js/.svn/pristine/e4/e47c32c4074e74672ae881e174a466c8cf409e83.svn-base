@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js定义函数的三种方式</title>
+<script type="text/javascript">
+
+//方式一
+/* function add(a,b){
+	return a+b;
+}
+alert(add(3, 4)); */
+
+//方式二：
+/* var add=new Function('a','b','return a+b;');
+alert(add(3,4)); */
+
+//方式三：
+ var add=function(a,b){
+	return a+b;
+}
+alert(add(3, 4));
+
+
+</script>
+</head>
+<body>
+	
+</body>
+</html>

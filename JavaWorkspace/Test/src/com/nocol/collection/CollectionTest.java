@@ -1,0 +1,58 @@
+package com.nocol.collection;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import javax.swing.text.html.parser.Entity;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class CollectionTest {
+	public static void main(String[] args) {
+		// 数组可以存放对象
+		// Student[] s = new Student[5];
+		// s[5]=new Student();
+		// System.out.println(s[5]);
+		// set集合无序不可重复
+		/*
+		 * Set<Object> set=new HashSet<Object>(); set.add(10); set.add(10);
+		 * set.add(true); set.add(Math.random()); set.add("Hello");
+		 * //System.out.println(set.size()); for(Object o:set){
+		 * System.out.println(o); }
+		 */
+
+		/*
+		 * //List集合有序可重复 List<Object> list=new ArrayList<Object>();
+		 * list.add(10); list.add(10); list.add(true); list.add(Math.random());
+		 * list.add("Hello");
+		 * 
+		 * //方法 System.out.println(list.isEmpty());
+		 * System.out.println(list.contains(10));
+		 * System.out.println(list.remove("Hello"));
+		 * 
+		 * Iterator<Object> iterator=list.iterator(); while(iterator.hasNext()){
+		 * Object object=iterator.next(); System.out.println(object); }
+		 */
+
+		// Map集合,键唯一，值可重复。后面覆盖前面
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		map.put(1, "Tom");
+		map.put(2, "jack");
+		map.put(3, "rose");
+		map.put(1, "mark");
+		Set<Entry<Integer, String>> set = map.entrySet();
+		for (Object o : set) {
+			System.out.println(o);
+		}
+	}
+}

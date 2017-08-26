@@ -1,0 +1,63 @@
+package com.nocol.collection;
+
+import java.util.TreeSet;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+class Teacher {
+	private String name;
+	private int age;
+
+	public Teacher() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Teacher(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher [name=" + name + ", age=" + age + "]";
+	}
+
+}
+
+public class TreeSetTest {
+	public static void main(String[] args) {
+		Teacher t1 = new Teacher("tom", 20);
+		Teacher t2 = new Teacher("rose", 21);
+		Teacher t3 = new Teacher("jack", 22);
+		TreeSet<Teacher> ts = new TreeSet<>();
+
+		ts.add(t1);
+		ts.add(t2);
+		ts.add(t3);
+		for (Teacher t : ts) {
+			System.out.println(t);
+		}
+	}
+}

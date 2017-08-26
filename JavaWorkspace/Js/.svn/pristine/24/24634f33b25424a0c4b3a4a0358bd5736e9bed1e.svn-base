@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>验证框</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!--引入css文件 顺序不限  -->
+<link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+<link rel="stylesheet" href="themes/icon.css" type="text/css"></link>
+<!--引入js文件 顺序有限  -->
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript" src="jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui-lang-zh_CN.js"></script>
+<!-- 所有的css文件和的有的js文件位置不限 -->
+</head>
+<body>
+ <!--静态方式  
+	<input id="vv" class="easyui-validatebox" data-options="required:true,validType:'email'" />  -->
+	
+	<!--动态方式  -->
+	姓名：<input id="nameID"/><p/>
+	
+	<script type="text/javascript">
+		$("#nameID").validatebox({
+			required : true, //定义为必填字段
+			validType : ['length[1,6]','zhongwen']   //定义字段验证类型
+		});
+	</script>
+	<script type="text/javascript">
+		//自定义规则:zhongwen
+		$.extend($.fn.validatebox.defaults.rules, {    
+		    //zhongwen规则名
+		    zhongwen: {  
+		    	//validator验证体  
+		    	//value表示用户在文本框中输入的内容
+		        validator: function(value){   
+		        	//如果符合中文规则 
+		        	if(/^[\u3220-\uFA29]*$/.test(value)){
+			            return true;    
+		        	}
+		        }, 
+		        //如果不符合中文规则，以下就是提示信息   
+		        message: '姓名必须为中文'   
+		    }    
+		});  
+	</script>
+
+	邮箱：<input id="emailID"/><p/>
+
+	<script type="text/javascript">
+		$("#emailID").validatebox({
+			required : true,
+			validType : ['length[1,30]','email']
+		});
+	</script>
+	
+
+	密码：<input id="passwordID"/><p/>
+
+	<script type="text/javascript">
+		$("#passwordID").validatebox({
+			required : true,
+			validType : ['length[6,6]','english']
+		});
+	</script>
+	<script type="text/javascript">
+		$.extend($.fn.validatebox.defaults.rules, {    
+		    english: {  
+		        validator: function(value){   
+		        	if(/^[a-zA-Z]*$/.test(value)){
+			            return true;    
+		        	}
+		        }, 
+		        message: '密码必须为英文'   
+		    }    
+		});  
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+

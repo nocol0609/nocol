@@ -1,0 +1,59 @@
+package com.nocol.tcp;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.util.List;
+
+import com.briup.gather.Gather;
+import com.nocol.bean.BIDR;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+//发送
+/*
+ * OutPutStream os=s.getOutputStream();
+ * ObjectOutputStream oos=new ObjectOutputStream(os);
+ * List<BIDR> list=(List<BIDR>) new Gather().gather("radwtmp_test");
+ * oos.writeObject(list);
+ * oos.flush;
+ * 
+ */
+public class Send {
+	public static void main(String[] args) throws Exception {
+		// 创建发送Socket对象
+		Socket s = new Socket("192.168.56.1", 4546);
+		// 封装通道流
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+		
+		//获取传输数据
+		Gather ga=new Gather();
+		List<BIDR> list=(List<BIDR>) ga.gather("radwtmp_test");
+		BufferedWriter bw2=new BufferedWriter(new FileWriter("out.txt"));
+		for(BIDR bidr:list){
+			bw2.write(bidr.toString());
+			bw2.newLine();
+			bw2.flush();
+		}
+		
+		// 封装数据源
+		BufferedReader br = new BufferedReader(new FileReader("out.txt"));		
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			bw.write(line);
+			bw.newLine();
+			bw.flush();
+		}
+		// 释放资源
+		bw2.close();
+		br.close();
+     	s.close();
+	}
+}

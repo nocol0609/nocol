@@ -1,0 +1,22 @@
+package com.nocol.io;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class ReaderTest {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("b.txt")));
+		//System.out.println(br.readLine());
+		String line=null;
+		while((line=br.readLine())!=null){
+			System.out.println(line);
+		}
+	}
+}

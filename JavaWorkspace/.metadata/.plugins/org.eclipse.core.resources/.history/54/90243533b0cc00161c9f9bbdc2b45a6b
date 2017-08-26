@@ -1,0 +1,71 @@
+package com.briup.dao;
+
+import java.awt.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.xml.transform.Templates;
+
+import com.briup.bean.UserBean;
+import com.briup.common.Handler;
+import com.briup.common.JDBCTemplate;
+import com.briup.common.PreSetter;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+
+public class UserDaoImpl implements IUserDao {
+	private JDBCTemplate templates;
+	UserBean  user=null;
+ //根据用户名查找用户
+	@Override
+	public UserBean findUserByName(final String name) {
+		user=null;
+		String sql="select * from tbl_user where name=?";
+		templates=new JDBCTemplate();
+		templates.execute(sql, new PreSetter() {
+			
+			@Override
+			public void setter(PreparedStatement pst) {
+				try {
+					pst.setString(1,name);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}, new Handler() {
+			
+			@Override
+			public void handler(ResultSet rs) {
+				List<UserBean> list =new ArrayList();
+				try {
+					while(rs.next()){
+						String name=rs.getString("name");
+						String passwd=rs.getString("passwd");
+						String tel=rs.getString("tel");
+						String address=rs.getString("address");
+						user=new UserBean(name,passwd,tel,address);
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		return user;
+	}
+
+	@Override
+	public void saveUser(UserBean user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

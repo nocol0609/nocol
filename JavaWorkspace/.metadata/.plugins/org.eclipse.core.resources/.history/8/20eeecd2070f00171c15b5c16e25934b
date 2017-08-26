@@ -1,0 +1,18 @@
+package com.noocl.triangle;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+/*
+    ======打印右正三角形======
+                 * 
+              *  * 
+           *  *  * 
+        *  *  *  * 
+     *  *  *  *  * 
+ */
+public class Test3 {
+
+}

@@ -1,0 +1,20 @@
+package com.nocol.io;
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class DataTest {
+	public static void main(String[] args) {
+		
+	}
+	//Êä³ö
+	public static void print(){
+		
+	}
+	ÊäÈë
+    public static void get(){
+		
+	}
+}

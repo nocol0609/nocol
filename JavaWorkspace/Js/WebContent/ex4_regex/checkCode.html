@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function showCode() {
+		//定义字符数组存储验证码
+		var dates = [ 'A', 'e', '大', 'P', '4', '帅', 'f', '比', 'k' ];
+		//产生四个随机数
+		var code = "";
+		for (var i = 0; i < 4; i++) {
+			//随机产生四个索引且不能超过字符数组的长度
+			var index = Math.floor(Math.random() * dates.length);
+			code += dates[index];
+		}
+		//找到code体
+		var spanNode = document.getElementById("code");
+		//var spanNode=document.getElementsByTagName("span");
+		spanNode.innerHTML = code;
+		spanNode.style.fontSize="20px";
+		spanNode.style.backgroundColor="yellow";
+		sapnNode.style.color="red";
+	}
+	
+	function show() {
+		showCode();
+	}
+</script>
+</head>
+<body onload="show()">
+	<span id="code"></span>
+	<a href="#" onclick="showCode()">看不清，下一个</a>
+</body>
+</html>

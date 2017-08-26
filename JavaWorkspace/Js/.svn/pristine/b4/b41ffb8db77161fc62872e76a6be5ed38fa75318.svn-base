@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加用户</title>
+
+</head>
+<body>
+
+	姓名:<input type="text" name="name" id="name" />&nbsp;&nbsp; 
+	email:<input type="text" name="email" id="email" />&nbsp;&nbsp; 
+	电话:<input type="text" name="tel" id="tel" />
+	<br>
+	<br>
+	<input type="button" value="提交" onclick="addUser()" />
+	<hr>
+	<table id="usertable" border="1" cellpadding="5" cellspacing=0>
+		<tbody>
+			<tr>
+				<th>姓名</th>
+				<th>email</th>
+				<th>电话</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr>
+				<td>Tom</td>
+				<td>tom@tom.com</td>
+				<td>5000</td>
+				<td><a href="deleteEmp?id=Tom">Delete</a></td>
+			</tr>
+			<tr>
+				<td>Jerry</td>
+				<td>jerry@sohu.com</td>
+				<td>8000</td>
+				<td><a href="deleteEmp?id=Jerry">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+<script type="text/javascript">
+	function addUser() {
+		//获取文本框的值
+		/*
+		 *      姓名: <input type="text" name="name" id="name" />&nbsp;&nbsp;
+				email: <input type="text" name="email" id="email" />&nbsp;&nbsp;
+				电话: <input type="text" name="tel" id="tel" /><br><br>
+		 */
+
+		var nameValue = document.getElementById("name").value;
+		var emailValue = document.getElementById("email").value;
+		var telValue = document.getElementById("tel").value;
+
+		//创建td
+		/*
+		 * <tr> 
+				<td>Tom</td>
+				<td>tom@tom.com</td>
+				<td>5000</td>
+				<td><a href="deleteEmp?id=Tom">Delete</a></td>
+		  </tr>
+		 */
+		//创建nametd
+		var nameTd = document.createElement("td");
+		var nameText = document.createTextNode(nameValue);
+		nameTd.appendChild(nameText);
+
+		//创建emailtd
+		var emailTd = document.createElement("td");
+		var emailText = document.createTextNode(emailValue);
+		emailTd.appendChild(emailText);
+
+		//创建teltd
+		var telTd = document.createElement("td");
+		var telText = document.createTextNode(telValue);
+		telTd.appendChild(telText);
+
+		//创建atd
+		var aTd = document.createElement("td");
+
+		var aElement = document.createElement("a");
+		aElement.setAttribute("href", "deleteEmp?id=" + nameValue);
+		var deleteText = document.createTextNode("Delete");
+		aElement.appendChild(deleteText);
+		aTd.appendChild(aElement);
+
+		//创建tr
+		var trElement = document.createElement("tr");
+
+		//增加td到tr上
+		trElement.appendChild(nameTd);
+		trElement.appendChild(emailTd);
+		trElement.appendChild(telTd);
+		trElement.appendChild(aTd);
+
+		//增加tr到table上
+		//<table id="usertable" border="1" cellpadding="5" cellspacing=0>
+		//<tbody>
+		var tableElement = document.getElementById("usertable");
+
+		//创建tbody,为了跨浏览器,要创建tbody
+		var tbodyElement = document.createElement("tbody");
+		tbodyElement.appendChild(trElement);
+
+		//放置tbody到table上
+		tableElement.appendChild(tbodyElement);
+
+		//删除
+		aElement.onclick = function() {
+			//使网页的链接失效
+			return delTr(aElement);
+		}
+
+		function delTr(aElement) {
+			/*
+			 *               <tr>
+									<td>Tom</td>
+									<td>tom@tom.com</td>
+									<td>5000</td>
+									<td><a href="deleteEmp?id=Tom">Delete</a></td>
+							</tr>
+			 */
+			var name = aElement.parentNode.parentNode.firstChild.firstChild.nodeValue;
+			//alert("name   "+name)
+
+			var flag = window.confirm("您真的要删除[" + name + "]这个用户吗?");
+			//alert(flag);
+
+			// 点击"取消" 按钮
+			if (!flag) {
+				//使网页的链接失效
+				return false;
+			}
+
+			//删除
+			//获取tbody
+			var tbodyElement = aElement.parentNode.parentNode.parentNode;
+			//获取tr
+			var trElement = aElement.parentNode.parentNode;
+			//删除
+			tbodyElement.removeChild(trElement);
+			//使网页的链接失效
+
+			return false;
+		}
+	}
+</script>
+
+</html>

@@ -1,0 +1,22 @@
+package com.nocol.io;
+
+import java.io.ByteArrayOutputStream;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+public class ByteTest {
+	public static void main(String[] args) {
+		//×Ö½ÚÊä³öÁ÷
+		ByteArrayOutputStream bos=new ByteArrayOutputStream();
+		bos.write(10);
+		bos.write(-10);
+		byte[] bys=bos.toByteArray();
+		for(int i=0;i<bys.length;i++){
+			System.out.println(bys[i]);
+		}
+	}
+}

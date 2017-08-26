@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<employees>
+	<employee id="1" depName="教学部">
+		<name>tom</name>
+		<age>18</age>
+		<gender>male</gender>
+		<salary>1000</salary>
+	</employee>
+	<employee id="2" depName="教学部">
+		<name>mark</name>
+		<age>24</age>
+		<gender>male</gender>
+		<salary>1500</salary>
+	</employee>
+	<employee id="3" depName="市场部">
+		<name>jack</name>
+		<age>20</age>
+		<gender>male</gender>
+		<salary>2000</salary>
+	</employee>
+	<employee id="4" depName="教学部">
+		<name>rose</name>
+		<age>22</age>
+		<gender>female</gender>
+		<salary>3000</salary>
+	</employee>
+</employees>

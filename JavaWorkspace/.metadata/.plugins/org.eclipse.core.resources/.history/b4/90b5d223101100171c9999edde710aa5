@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3> Get方式提交</h3>
+	<form action="" method="get">
+	用户名<input type="text" name="name"/><br/>
+           密码<input type="text" name="password"/><br/>
+        <input type="submit" value="提交"/>
+	</form>
+	<hr/>
+	<h3> Post方式提交</h3>
+	<form action="" method="get">
+	用户名<input type="text" name="name"/><br/>
+           密码<input type="text" name="password"/><br/>
+        <input type="submit" value="提交"/>
+	</form>
+</body>
+</html>

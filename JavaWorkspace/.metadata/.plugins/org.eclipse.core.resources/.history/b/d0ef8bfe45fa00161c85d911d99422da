@@ -1,0 +1,115 @@
+package com.nocol.mutildownload;
+
+import java.io.InputStream;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+/**
+* @author lxp
+*
+* @TODO 
+* 
+*/
+
+public class MutilDownLoad {
+	//定义线程个数
+	public static int ThreadCount=3;
+	public static void main(String[] args) throws Exception {
+		//连接服务器，获取下载的文件长度
+		//获取下载路径
+		String path="http://192.168.56.1:8080/KMPlayer_4.1.4.7.exe";
+		//创建URL对象
+		URL url=new URL(path);
+		//获取连接对象
+		HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+		//设置请求数据的方式
+		conn.setRequestMethod("GET");
+		//设置请求超时时间
+		conn.setReadTimeout(5000);
+		//获取服务器状态码
+		int code=conn.getResponseCode();
+		if(code==200){
+			//获取文件实际长度
+			int lenth=conn.getContentLength();
+			//创建要下载文件的文件空间
+			RandomAccessFile raf=new RandomAccessFile("download.exe", "rw");
+			//指定该空间的长度(和要下载的文件的长度相同)
+			raf.setLength(lenth);
+			
+			//设置每个线程要下载的文件长度
+			int blockSize=lenth/ThreadCount;
+			for(int ThreadId=1;ThreadId<=ThreadCount;ThreadId++){
+				//设置没每个线程下载的开始位置
+				int startIndex=(ThreadId-1)*blockSize;
+				int endIndex=startIndex+(blockSize-1);
+				if(ThreadId==ThreadCount){
+					endIndex=lenth-1;
+				}
+				//开启线程下载
+				
+			}
+		}
+	}
+}
+//创建线程下载文件
+class DownLoadThread extends Thread{
+	
+	private int startIndex;
+	private int endIndex;
+	private int ThreadId;
+	private String path;
+	
+	public DownLoadThread(int startIndex,int endIndex,int ThreadId,String path) {
+		this.endIndex=endIndex;
+		this.startIndex=startIndex;
+		this.ThreadId=ThreadId;
+		this.path=path;
+	}
+	@Override
+	public void run() {
+		try {
+			//连接服务器下载文件
+			//获取下载路径
+			String path="http://192.168.56.1:8080/";
+			//创建URL对象
+			URL url=new URL(path);
+			//获取连接对象
+			HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+			//设置请求数据的方式
+			conn.setRequestMethod("GET");
+			//设置请求超时时间
+			conn.setReadTimeout(5000);
+			//很重要：请求服务器下载部分的文件的指定的位置(请求头信息)
+            conn.setRequestProperty("Range", "bytes="+startIndex+"-"+endIndex);
+			//获取服务器状态码
+			int code=conn.getResponseCode();
+			if(code==206){//状态码=206表示请求部分资源成功
+				//获取输入流对象
+				InputStream in=conn.getInputStream();
+				//创建随机访问文件对象
+				RandomAccessFile raf=new RandomAccessFile("download.exe", "rw");
+				//指定线程下载文件的开始位置
+				raf.seek(startIndex);
+				
+				//将读取的文件写入创建的文件空间
+				int len=0;
+				byte[] bys=new byte[1024];
+				while((len=in.read(bys))!=-1){
+					raf.write(bys,0,len);
+				}
+				//释放资源
+				in.close();
+				raf.close();
+				
+				System.out.println("线程"+ThreadId+"下载完成！");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+

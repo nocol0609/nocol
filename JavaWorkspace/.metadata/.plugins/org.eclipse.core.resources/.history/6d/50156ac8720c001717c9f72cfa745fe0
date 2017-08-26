@@ -1,0 +1,91 @@
+package com.dom4j;
+
+import java.io.File;
+import java.util.Iterator;
+
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.io.SAXReader;
+import org.junit.Test;
+
+/**
+ * @author lxp
+ *
+ * @TODO
+ * 
+ */
+public class Dom4jTest {
+	/**
+	 * 拿到节点信息
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void test() throws Exception {
+		// 创建xml解析器
+		SAXReader reader = new SAXReader();
+		// 读取xml文件并返回xml文档对象(document)
+		Document document = reader.read(new File("./src/contact.xml"));
+		// 利用文档对象获取子节点
+		Iterator<Node> iterator = document.nodeIterator();// 不包括孙节点
+		while (iterator.hasNext()) {// 判断是否有下一个元素
+			// 取出节点
+			Node node = iterator.next();// Node是所有节点的抽象
+			// 获取节点名称
+			String name = node.getName();
+			System.out.println(name);
+			// 继续取出其下面的子节点
+			// 只有标签节点才有子节点
+			// 判断当前节点是否是标签节点
+			if (node instanceof Element) {
+				// 将Node对象节点node强转为Element标签节点
+				Element element = (Element) node;
+				Iterator<Node> iterator2 = element.nodeIterator();
+				while (iterator2.hasNext()) {
+					Node node2 = iterator2.next();
+					System.out.println(node2.getName());
+				}
+			}
+		}
+	}
+
+	/**
+	 * 遍历xml中所有节点
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void test2() throws Exception {
+		// 创建xml解析器
+		SAXReader reader = new SAXReader();
+		// 读取xml文件并返回xml文档对象(document)
+		Document document = reader.read(new File("./src/contact.xml"));
+		// 获取根节点
+		Element rootElement = document.getRootElement();
+		// 调用获取标签下是所有子节点
+		getChildNode(rootElement);
+	}
+
+	/**
+	 * 获取传入的标签的所有子节点
+	 * 
+	 * @param element
+	 */
+	private void getChildNode(Element element) {
+		// 传入的标签可能会有子节点
+		Iterator<Node> iterator = element.nodeIterator();
+		// 遍历节点
+		while (iterator.hasNext()) {
+			Node node = iterator.next();
+			// 判断是否为标签节点
+			if (element instanceof Element) {
+				//强转为标签节点
+				Element element2 = (Element) node;
+				//再取出该标签节点下的所有子节点(递归)
+				getChildNode(element2);
+			}
+		}
+		System.out.println(element.getName());
+	}
+}
