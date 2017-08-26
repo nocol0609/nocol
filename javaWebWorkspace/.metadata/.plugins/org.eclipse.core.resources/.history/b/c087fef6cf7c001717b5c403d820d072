@@ -1,0 +1,37 @@
+package com.nocol.link.doublelink;
+
+/**
+ * 自定义双向链表
+ * 
+ * @author Nocol 下午2:45:01
+ */
+public class DoubleLinkList {
+	// 头节点
+	private Node first;
+	// 尾节点
+	private Node last;
+
+	public DoubleLinkList() {
+
+		first = null;
+		last = null;
+	}
+
+	/**
+	 * 在头节点插入
+	 */
+	public void addFirst(long value) {
+		// 创建要插入的节点
+		Node node = new Node(value);
+
+		// 判断头节点是否为空
+		if (first == null) {
+			last = node;
+		} else {
+			first.previous = node;
+		}
+
+		node.next = first;
+		first = node;
+	}
+}

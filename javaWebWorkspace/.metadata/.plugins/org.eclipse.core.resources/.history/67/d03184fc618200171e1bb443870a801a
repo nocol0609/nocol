@@ -1,0 +1,19 @@
+package com.nocol.tree;
+
+/**
+ * 二叉树的节点
+ * 
+ * @author Nocol 下午5:02:50
+ */
+public class Node {
+	private long data;
+	private Node leftNode;
+	private Node rigthNode;
+
+	/**
+	 * 构造方法
+	 */
+	public Node(long data) {
+		this.data = data;
+	}
+}

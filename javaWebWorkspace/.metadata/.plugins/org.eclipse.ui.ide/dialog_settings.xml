@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="true" key="BUILD_ALL"/>
+		<item value="false" key="TOGGLE_SELECTED"/>
+		<item value="457" key="DIALOG_HEIGHT"/>
+		<item value="true" key="BUILD_NOW"/>
+		<item value="104" key="DIALOG_Y_ORIGIN"/>
+		<item value="433" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\Nocol\Desktop\bookorder\order"/>
+			<item value="G:\File\toHeartBlog"/>
+			<item value="C:\Users\Nocol\Desktop\SSM\Spring\springTest"/>
+			<item value="I:\JavaWorkspace\Net"/>
+			<item value="E:\My File\WEB_BookTest"/>
+			<item value="E:\My File\BookWeb"/>
+			<item value="G:\File\ssm_maven"/>
+			<item value="I:\javaWebWorkspace\ssm"/>
+			<item value="I:\javaWebWorkspace\EStore"/>
+			<item value="G:\File\used\shiroTMP"/>
+			<item value="I:\SSM\maven\day44-maven第一天\资料\maven-helloworld"/>
+			<item value="G:\File\SSM"/>
+			<item value="E:\AndroidProjects\Estore"/>
+			<item value="G:\store"/>
+			<item value="I:\javaWebWorkspace\Servlet2"/>
+			<item value="E:\city"/>
+			<item value="I:\JavaWorkspace\String"/>
+			<item value="I:\javaWebWorkspace\Mybaits_410"/>
+			<item value="F:\Mybaits_410"/>
+			<item value="C:\Users\Nocol\Desktop\code\Server"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.m2e"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="160" key="DIALOG_Y_ORIGIN"/>
+		<item value="379" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

@@ -1,0 +1,88 @@
+package com.java;
+
+import java.util.Arrays;
+
+/**
+ * 
+ * @author Nocol
+ *
+ */
+public class SortTest {
+	public static void main(String[] args) {
+		int arr[] = { 5, 6, 1, 7, 4, 3, 2 };
+		System.out.println("排序前：" + Arrays.toString(arr));
+		// BubbleSort(arr);
+		// SelectSort(arr);
+		// insertSort(arr);
+		quickSort(arr, 0, 6);
+		System.out.println("排序后：" + Arrays.toString(arr));
+
+	}
+
+	private static void quickSort(int[] arr, int l, int r) {
+		// TODO Auto-generated method stub
+		if (l < r) { // 如果左边索引小于右边，则排序还未完成
+			int i = l;
+			int j = r;
+			int key = arr[l];
+
+			while (i < j) {
+				// 从右往左
+				while (i < j && arr[j] >= key) {
+					j--;
+				}
+				arr[i] = arr[j];
+
+				// 从右往左
+				while (i < j && arr[i] <= key) {
+					i++;
+				}
+				arr[j] = arr[i];
+			}
+			// 最后挖的坑
+			arr[i] = key;
+
+			// 左子串
+			quickSort(arr, l, i - 1);
+			// 右子串
+			quickSort(arr, i + 1, r);
+		}
+	}
+
+	private static void insertSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for (int i = 1; i < arr.length; i++) { // 默认arr[0]是有序，从索引1开始后面的元素都是无序
+			for (int j = i; (j > 0) && (arr[j] < arr[j - 1]); j--) {
+				int temp = arr[j];
+				arr[j] = arr[j - 1];
+				arr[j - 1] = temp;
+			}
+		}
+	}
+
+	private static void SelectSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < arr.length - 1; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] > arr[j]) {
+					int temp = arr[i];
+					arr[i] = arr[j];
+					arr[j] = temp;
+				}
+			}
+		}
+	}
+
+	private static void BubbleSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < arr.length - 1; i++) {
+			for (int j = 0; j < arr.length - 1 - i; j++) {
+				if (arr[j] > arr[j + 1]) {
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+}

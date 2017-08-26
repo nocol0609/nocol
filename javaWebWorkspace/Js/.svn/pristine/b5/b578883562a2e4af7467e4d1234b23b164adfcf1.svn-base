@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js操作复选框</title>
+<script type="text/javascript">
+window.onload=function(){
+	//全选
+	document.getElementById("checkall").onclick=function(){
+		var inputNode=document.getElementsByName("items");
+		for (var i = 0; i < inputNode.length; i++) {
+			//方式一
+			//inputNode[i].setAttribute("checked","checked");
+			//方式二
+			inputNode[i].checked="checked";
+		}	
+	}
+	
+	//全不选
+	document.getElementById("checkallNo").onclick=function(){
+		var inputNode=document.getElementsByName("items");
+		for (var i = 0; i < inputNode.length; i++) {
+			inputNode[i].checked=null;
+		}	
+	}
+	
+	//反选
+	document.getElementById("check_revsern").onclick=function(){
+		var inputNode=document.getElementsByName("items");
+		for (var i = 0; i < inputNode.length; i++) {
+			if(inputNode[i].checked){
+				inputNode[i].checked=null;
+			}else {
+				inputNode[i].checked="checked";
+			}
+		}	
+	}
+	
+	//全选/全不选
+	document.getElementById("checkItems").onclick=function(){
+		var inputNode=document.getElementsByName("items");
+		for (var i = 0; i < inputNode.length; i++) {
+			if(this.checked){
+				inputNode[i].checked="checked";
+			}else {
+				inputNode[i].checked=null;
+			}
+		}	
+	}
+}
+
+</script>
+</head>
+<body>
+  	您的爱好很广泛!!!
+  	 <br>
+	 <input type="checkbox" name="checkItems" id="checkItems" value="全选/全不选"/>全选/全不选
+	 <br>
+        <input type="checkbox" name="items" value="足球" />足球
+		<input type="checkbox" name="items" value="篮球"/>篮球
+		<input type="checkbox" name="items" value="游泳"/>游泳
+		<input type="checkbox" name="items" value="唱歌"/>唱歌
+		<br>
+		<input type="button" name="checkall" id="checkall" value="全选" />
+		<input type="button" name="checkall" id="checkallNo" value="全不选" />
+		<input type="button" name="checkall" id="check_revsern" value="反选" />
+  </body>
+  
+<!-- <script type="text/javascript">
+
+function checkAll() {
+	var inputNode=document.getElementsByName("items");
+	var allNode=document.getElementsByName("checkall")[0];
+		for (var i = 0; i < inputNode.length; i++) {
+			inputNode[i].checked=allNode.checked;
+	} 
+}
+
+function checkAllNo() {
+	var inputNode=document.getElementsByName("items");
+		for (var i = 0; i < inputNode.length; i++) {
+			inputNode[i]=null;
+	} 
+}
+
+</script> -->
+
+
+</html>

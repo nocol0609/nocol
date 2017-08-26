@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<c3p0-config>
+  <default-config>
+    <property name="driverClass">oracle.jdbc.OracleDriver</property>
+    <property name="jdbcUrl">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="user">oracle</property>
+    <property name="password">123</property>
+  </default-config>
+</c3p0-config>
+	

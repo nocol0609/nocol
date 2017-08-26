@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.PublishDao">
+	
+	<!--查询所有出版社  -->
+	<select id="findAllPublish" resultType="Publish">
+		select dp.id,dp.name
+		from d_publish dp
+	</select>
+	
+</mapper>

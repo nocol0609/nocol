@@ -1,0 +1,13 @@
+package Test;
+
+public class Test {
+	public static void main(String[] args) {
+//		Dog dog=new Dog();
+//		System.out.println(dog.age);
+//		Animal animal=new Cat();
+//		Cat cat=(Cat)animal;
+//		System.out.println(animal.age);
+		Animal animal=new Dog();
+		System.out.println(animal.age);//100
+	}
+}

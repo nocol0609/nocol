@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.ProductDao">
+	
+	<resultMap type="Publish" id="PublishResult">
+		<id property="id" column="id"/>
+	</resultMap>
+
+	<resultMap type="CategoryDetail" id="CategoryDetailResult">
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="Product" id="ProductResult">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="price" column="price"/>
+		<result property="service_fg" column="service_fg"/>
+		<result property="service_myf" column="service_myf"/>
+		<result property="service_zt" column="service_zt"/>
+		<result property="service_th" column="service_th"/>
+		<result property="version" column="version"/>
+		<result property="stock" column="stock"/>
+		<result property="description" column="description"/>
+		<result property="writer" column="writer"/>
+		<result property="pages" column="pages"/>
+		<result property="ISBN" column="ISBN"/>
+		<result property="publish_date" column="publish_date"/>
+		<result property="feature_images" column="feature_images"/>
+		<result property="images" column="images"/>
+		<result property="bill" column="bill"/>
+		<result property="start_date" column="start_date"/>
+		<result property="sale_num" column="sale_num"/>
+		<result property="flag" column="flag"/>
+		<result property="explain" column="explain"/>
+		<association property="publish" resultMap="PublishResult"></association>
+		<association property="cate_detail" resultMap="CategoryDetailResult"></association>
+	</resultMap>
+	
+	<!--查询所有推荐产品  -->
+	<select id="findNewProduct" parameterType="int" resultMap="ProductResult">
+		select * 
+		from d_product 
+		where flag=#{flag} and rownum <![CDATA[ < ]]> 4
+	</select>
+	
+	<!--根据id查询商品  -->
+	<select id="findProdById" parameterType="string" resultMap="ProductResult">
+		select * 
+		from d_product
+		where id=#{id}
+	</select>
+	
+	<!--查询热卖产品  -->
+	<select id="fingHotProductByFlag" parameterType="int" resultMap="ProductResult">
+		select * 
+		from d_product
+		where flag=#{flag} and rownum <![CDATA[ < ]]> 5
+	</select>
+	
+	<!--通过种类id查询详细种类的书籍  -->
+	<select id="findProdByCatId" parameterType="string" resultMap="ProductResult">
+		select dp.* 
+		from d_product dp,d_category dc,d_category_detail dcd 
+		where dp.cat_detail_id=dcd.id and dcd.category_id=dc.id and dc.id=#{cate_detail.category.id}
+	</select>
+	
+	<!-- 根据详细分类id查询该分类下的所有产品 -->
+	<select id="findProdByCatDetailId" parameterType="long" resultMap="ProductResult">
+		select dp.* 
+		from d_product dp,d_category_detail dcd,d_category dc 
+		where dcd.category_id=dc.id and dp.cat_detail_id=dcd.id and dcd.id=#{cate_detail.id}
+	</select>
+	
+	<!--根据产品id查询产品并减去产品库存  -->
+	<update id="delProdNum" parameterType="map">
+		update d_product 
+		set stock=stock-#{amount} 
+		where id=#{id} and stock-#{amount}<![CDATA[ >= ]]>0
+	</update>
+	
+	<!--根据产品id增加产品数量  -->
+	<update id="addProdNumByProdId" parameterType="map">
+		update d_product 
+		set stock=stock+#{amount} 
+		where id=#{id}
+	</update>
+</mapper>

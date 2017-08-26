@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+</head>
+<body>
+	<div class="ioc-red">
+		<span class="ioc-row">10</span>
+	</div>
+	<div class="ioc-red">
+		<span class="ioc-row">20</span>
+	</div>
+	<div class="ioc-red">
+		<span class="ioc-row">30</span>
+	</div>
+	
+	
+	<script type="text/javascript">
+		alert($("span :eq(1)").text());/*20  */
+	</script>
+
+</body>
+</html>

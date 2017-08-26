@@ -1,0 +1,54 @@
+<classpath>
+  <container id="ssm_shiro!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/ssm_shiro/WebContent/WEB-INF/lib/shiro-spring-1.2.3.jar">
+      <source-attachment-path>E:/jar/shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+    <entry id="I:/javaWebWorkspace/ssm_shiro/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Spring_transaction!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Spring_transaction/WebContent/WEB-INF/lib/spring-jdbc-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-jdbc-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="ssm!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/ssm/WebContent/WEB-INF/lib/spring-webmvc-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-webmvc-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="I:/javaWebWorkspace/ssm/WebContent/WEB-INF/lib/spring-jdbc-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-jdbc-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="I:/javaWebWorkspace/ssm/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Shiro!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Shiro/WebContent/WEB-INF/lib/shiro-core-1.2.3.jar">
+      <source-attachment-path>E:/jar/shiro/shiro-root-1.2.3-source-release.zip</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Spring_Xml!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Spring_Xml/WebContent/WEB-INF/lib/spring-context-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-context-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Springmvc_xml!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Springmvc_xml/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+    <entry id="I:/javaWebWorkspace/Springmvc_xml/WebContent/WEB-INF/lib/spring-webmvc-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-webmvc-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Spring_Annotation!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Spring_Annotation/WebContent/WEB-INF/lib/spring-web-4.2.4.RELEASE.jar">
+      <source-attachment-path>E:/jar/Spring/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+  <container id="Upload!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="I:/javaWebWorkspace/Upload/WebContent/WEB-INF/lib/commons-fileupload-1.2.1.jar">
+      <source-attachment-path>E:/jar/upload/commons-fileupload-1.2.1/commons-fileupload-1.2.1-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

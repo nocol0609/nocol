@@ -1,0 +1,9 @@
+package com.nocol.queue;
+/**
+ * 测试自定义队列
+ *	
+ * @author Nocol 下午3:34:06
+ */
+public class MyqueueTest {
+
+}

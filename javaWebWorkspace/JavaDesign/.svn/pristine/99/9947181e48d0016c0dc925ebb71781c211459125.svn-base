@@ -1,0 +1,19 @@
+package test;
+
+import org.junit.Test;
+
+public class test1 {
+/*	static final int a=1;
+	void say();
+	void run();*/
+	
+	@Test
+	public void stringTest(){
+		
+		String s1="hello";
+		String s2="he"+new String("llo");
+		
+		System.out.println(s1==s2);  //false
+		
+	};
+}

@@ -1,0 +1,13 @@
+package com.java;
+
+public class DoubleNum {
+
+	public void printNum(int n) {
+		System.out.println(n);
+		if (n < 5000) {
+			printNum(n * 2);
+		}
+		System.out.println(n);
+	}
+
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--引入css文件 顺序不限  -->
+    <link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+    <link rel="stylesheet" href="themes/icon.css" type="text/css"></link> 
+<!--引入js文件 顺序有限  -->
+<script type="text/javascript" src="jquery-1.8.3.js"></script>   
+<script type="text/javascript" src="jquery.easyui.min.js"></script> 
+</head>
+<body>
+
+  <div id="layoutID" class="easyui-layout" style="width:800px;height:600px" data-options="fit:true">   
+    <!--区域面板：北边  -->
+    <div data-options="region:'north',title:'北边',collapsible:true" style="height:100px;"></div>   
+     <!--区域面板：南边  -->
+    <div data-options="region:'south',title:'南边'" style="height:100px;"></div>   
+     <!--区域面板：东边  -->
+    <div data-options="region:'east',iconCls:'icon-reload',title:'东边'" style="width:100px;"></div>   
+     
+     <!--区域面板：西边  -->
+    <div data-options="region:'west',title:'菜单'" style="width:250px;">
+    
+    <div id="aa" class="easyui-accordion" style="width:250px;" data-options="fit:true">   
+	
+    <div title="Title1" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+        <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
+       	北京
+    </div>   
+    <div title="Title2" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+                   上海    
+    </div>   
+    <div title="Title3">   
+                 广州   
+     </div>   
+    </div>   
+    
+    
+     <!--区域面板：中间  -->
+    <div data-options="region:'center',title:'中间',href:'/Js/images/p.html' " style="padding:5px;background:#eee;"></div>   
+</div>  
+
+<script type="text/javascript">
+	
+	//加载jsp页面时触发  
+	$(function(){
+		//调用easyui方法 ：$('selector').组件名('method', parameter); 
+		$('#layoutID').layout('collapse','north');
+		//休息三秒南边收起
+		window.setTimeout(function(){
+		$('#layoutID').layout('collapse','south');
+		//再将北边展开
+		$('#layoutID').layout('expand','north');
+		//再休息三秒将南边展开
+		window.setTimeout(function(){
+			$('#layoutID').layout('expand','south');
+		}, 3000);
+		
+		}, 3000);
+	});
+	
+</script>
+
+
+</body>
+</html>

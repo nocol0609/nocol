@@ -1,0 +1,91 @@
+﻿<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<title>基本（加强）选择器</title>
+</head>
+<body>
+
+	<ul>
+		<li>list item 1</li>
+		<li>list item 2</li>
+		<li>list item 3</li>
+		<li>list item 4</li>
+		<li>list item 5</li>
+	</ul>
+
+	<input type="checkbox" checked />
+	<input type="checkbox" checked />
+	<input type="checkbox" />
+
+	<table border="1">
+		<tr>
+			<td>line1[0]</td>
+		</tr>
+		<tr>
+			<td>line2[1]</td>
+		</tr>
+		<tr>
+			<td>line3[2]</td>
+		</tr>
+		<tr>
+			<td>line4[3]</td>
+		</tr>
+		<tr>
+			<td>line5[4]</td>
+		</tr>
+		<tr>
+			<td>line6[5]</td>
+		</tr>
+	</table>
+
+	<h1>h1</h1>
+	<h2>h2</h2>
+	<h3>h3</h3>
+
+	<p>p</p>
+
+
+	<script type="text/javascript">
+		//1)查找UL中第一个元素的内容
+		
+		//alert($("ul li").first().html());
+		//alert($("ul li:first").html());
+		alert($("ul li:first").text());
+		
+		/* html()只能用于html、jsp不能用于xml,而text()能用于html、jsp和xml */
+
+		//2)查找UL中最后个元素的内容
+		alert($("ul li:last").text());
+		
+		//4)查找表格的索引号为1、3、5...偶数行个数，索引号从0开始
+		alert($("table tr:odd").size());
+		
+		//5)查找表格的索引号为2、4、6...奇数行个数，索引号从0开始
+		alert($("table tr:even").size());
+		
+		//6)查找表格中第二行的内容，从索引号0开始，这是一种祖先 后代 的变化形式
+		//alert($("table tr:eq(1)").html());//会将标签一起打印出来
+		alert($("table tr:eq(1)").text());
+		
+		//7)查找表格中索引值比0大的数的个数
+		alert($("table tr:gt(0)").size());
+		
+		//8)查找表格中索引值比5小的数的个数
+		alert($("table tr:lt(5)").size());
+		
+		//9)给页面内所有标题<h1><h2><h3>加上红色背景色，且文字加蓝色
+		$(":header").css("background-color","red").css("color","blue");
+		
+		//10)查找所有未选中的input为checkbox的元素个数
+		alert($(":checkbox:not(:checked)").size());
+		
+	</script>
+
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nocol.annocation.AnnocationMapper">
+
+	<resultMap type="Person" id="PersonResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="age" column="age" />
+		<association property="address" resultMap="AddressResult" /> 
+	</resultMap>
+
+	<resultMap type="Address" id="AddressResult">
+		<id property="addrId" column="addr_id" />
+		<result property="country" column="county" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="zip" column="zip" />
+	</resultMap>
+
+</mapper> 

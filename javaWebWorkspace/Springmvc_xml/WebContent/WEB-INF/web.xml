@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+	<display-name>Springmvc_xml</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+
+	<!--web.xml设置不拦截静态资源 -->
+<!-- 	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.css</url-pattern>
+	</servlet-mapping> -->
+
+	<!--配置Springmvc核心控制器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 在默认情况下：springmvc框架的配置文件必须叫<servlet-name>-servlet.xml 且必须放在/WEB-INF/目录下，我们可以在web.xml文件中，为DispatcherServlet配置一个初始化参数， 
+			让它去我们指定的目录下加载springmvc.xml配置文件 -->
+		<!--通知DispatcherServlet去指定的目录下加载springmvc配置文件 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!--配置文件地址 -->
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<!-- 可以配置/ ，此工程 所有请求全部由springmvc解析，此种方式可以实现 RESTful方式，需要特殊处理对静态文件的解析不能由springmvc解析 
+			可以配置*.do或*.action，所有请求的url扩展名为.do或.action由springmvc解析，此种方法常用 不可以/*，如果配置/*，返回jsp也由springmvc解析，这是不对的。 -->
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+
+
+	<!--配置由Spring 提供的针对中文乱码的编码过滤器 -->
+	<!-- 编码过滤器 -->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

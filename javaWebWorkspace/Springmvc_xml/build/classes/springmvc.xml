@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+      xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:mvc="http://www.springframework.org/schema/mvc"
+      xsi:schemaLocation="
+	  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+	<!--解决静态资源无法访问的问题  -->
+	<mvc:default-servlet-handler/>
+	
+	<!--第一部分：视图解析器  -->
+	
+	<!--配置Action  -->
+	<!--
+		name:请求路径
+		class：Action所在类全路径
+	  -->
+<!--    <bean name="/hello.action" class="com.springmvc.view.HelloAction"></bean> -->
+    
+    <!--配置映射器（可选）  -->
+    <!--将bean标签的name属性作为请求的url  -->
+<!--     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean> -->
+    
+    <!--配置适配器（可选）  -->
+    <!--用于寻找实现了Controller接口的Action类  -->
+<!--     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean> -->
+    
+    <!--配置视图解析器（可选） -->
+    <!--如果Action中是 视图的【真实路径 可省略】 视图解析器的配置  -->
+    <!--表示通过ModleAndView对象中封装的视图名（普通字符串）找到真正的页面  -->
+<!--     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean> -->
+    
+    <!--如果视图是【逻辑路径不可省略】视图解析器的配置   -->
+<!--     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+    	<!--真实路径前缀  -->
+<!--     	<property name="prefix" value="/jsp/"></property> -->
+    	<!--真实路径后缀  -->
+<!--     	<property name="suffix" value=".jsp"></property> -->
+<!--     </bean> -->
+    
+    
+    <!--第二部分：映射器  -->
+    
+    <!--配置Action  -->
+<!--     <bean name="/add.action" class="com.springmvc.mapping.UserAction"></bean> -->
+    <!--配置视图解析器（必选）  -->
+<!--     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!--     	<property name="prefix" value="/jsp/"></property> -->
+<!--     	<property name="suffix" value=".jsp"></property> -->
+<!--     </bean> -->
+    
+    <!--将所有的操作用户都交给UserAction处理  -->
+    <!--方式一  -->
+<!--     <bean name="/add.action" class="com.springmvc.mapping.UserAction"></bean> -->
+<!--     <bean name="/update.action" class="com.springmvc.mapping.UserAction"></bean> -->
+<!--     <bean name="/delete.action" class="com.springmvc.mapping.UserAction"></bean> -->
+<!--     <bean name="/find.action" class="com.springmvc.mapping.UserAction"></bean> -->
+    <!--配置视图解析器（必选）  -->
+<!--     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!--     	<property name="prefix" value="/jsp/"></property> -->
+<!--     	<property name="suffix" value=".jsp"></property> -->
+<!--     </bean> -->
+    
+    <!--方式二  -->
+<!--     <bean id="userActionId" class="com.springmvc.mapping.UserAction"></bean> -->
+    <!--注册映射器
+    	【适合】将多个请求映射到同一个Action
+      -->
+<!--     <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+<!--     	<property name="mappings"> -->
+<!--     		<props> -->
+    			<!-- key为请求路径  -->
+<!--     			<prop key="/add.action">userActionId</prop> -->
+<!--     			<prop key="/update.action">userActionId</prop> -->
+<!--     			<prop key="/delete.action">userActionId</prop> -->
+<!--     			<prop key="/find.action">userActionId</prop> -->
+<!--     		</props> -->
+<!--     	</property> -->
+<!--     </bean>  -->
+     <!--配置视图解析器（必选）  -->
+<!--     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> -->
+<!--     	<property name="prefix" value="/jsp/"></property> -->
+<!--     	<property name="suffix" value=".jsp"></property> -->
+<!--     </bean> -->
+    
+    
+    <!--第三部分：适配器  -->
+    <!--配置EmpAction  -->
+<!--     <bean name="/add.action" class="com.springmvc.adapter.EmpAction"></bean> -->
+    <!--配置适配器（可选）  -->
+<!--     <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean> -->
+    
+    
+    <!--第四部分：控制器  -->
+    <!--专用于jsp直接跳转jsp页面的转发控制器 （不需要经过控制器Action类） -->
+    <!--此时不需要配映射器、适配器和视图解析器  -->
+    <bean name="/index.action" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+    	<!--如果视图路径是逻辑名称则需要配置视图解析器  -->
+    	<property name="viewName" value="/WEB-INF/index.jsp"></property>
+    </bean>
+    
+</beans>      

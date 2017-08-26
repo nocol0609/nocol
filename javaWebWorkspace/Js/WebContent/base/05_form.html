@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>05_form.html</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+	
+	<form action="04_images.html" method="POST">
+		<input type="button" value="提交"/>
+	</form>	
+	
+	<!-- 演示用JS提交表单，重要 -->
+	<script type="text/javascript">
+		//定位提交按钮
+		var inputElement = document.getElementsByTagName("input")[0];
+		//为提交按钮添加单击事件
+		inputElement.onclick = function(){
+										//定位<form>标签，forms表示document对象中所有表单的集合，通过下标引用不同的表单，从0开始
+										var formElement = document.forms[0];
+										//提交表单，提交到action属性指定的地方
+										formElement.submit();
+							   }
+	
+		
+	</script>
+	
+  </body>
+</html>

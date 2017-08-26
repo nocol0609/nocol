@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>First jQuery</title>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		//js转jquery
+		var inputElement = document.getElementById("inputID");
+		var $inputElement = $(inputElement);
+		var value = $inputElement.val();
+		alert(value);
+
+		//jquery转js
+		var $div = $("#divID");//返回的是数组
+		//var divElement = $div.get(0);
+		var divElement = $div[0];
+		var div = divElement.innerHTML;
+		alert(div);
+	} 
+</script>
+</head>
+<body>
+	<input id="inputID" type="button" value="这是jQuery库" />
+
+	<div id="divID">哈哈哈</div>
+</body>
+</html>

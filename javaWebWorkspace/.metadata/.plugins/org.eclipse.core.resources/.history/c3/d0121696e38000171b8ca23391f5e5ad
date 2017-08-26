@@ -1,0 +1,20 @@
+package Test;
+
+class test {
+	public void catchTest() {
+		try {
+			System.out.println("A");
+			int c = 10 / 0;
+			System.out.println("B");
+		} catch (Exception e) {
+			System.out.println("C");
+		} finally {
+			System.out.println("D");
+		}
+	}
+
+	public static void main(String[] args) {
+		test t = new test();
+		t.catchTest();
+	}
+}

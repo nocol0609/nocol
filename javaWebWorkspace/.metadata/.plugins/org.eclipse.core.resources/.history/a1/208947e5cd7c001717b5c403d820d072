@@ -1,0 +1,26 @@
+package com.nocol.link.doublelink;
+
+/**
+ * 双向链表的节点类
+ * 
+ * @author Nocol 下午2:38:52
+ */
+public class Node {
+	// 数据域
+	private long data;
+	// 指针域
+	private Node next;
+	private Node privious;
+
+	public Node(long value) {
+		this.data = value;
+	}
+
+	/**
+	 * 显示方法
+	 */
+	public void display() {
+		System.out.println(data + " ");
+	}
+
+}

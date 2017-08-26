@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration> 
+	<typeAliases> 
+		<typeAlias alias="Book" type="com.nocol.pojo.Book" /> 
+	</typeAliases> 
+	<environments default="development"> 
+		<environment id="development"> 
+		<transactionManager type="JDBC" /> 
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" /> 
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" /> 
+				<property name="username" value="nocol" /> 
+				<property name="password" value="123" /> 
+			</dataSource> 
+		</environment> 
+	</environments> 
+	<mappers> 
+		<mapper resource="com/nocol/pojo/BookMapper.xml" /> 
+	</mappers> 
+</configuration> 

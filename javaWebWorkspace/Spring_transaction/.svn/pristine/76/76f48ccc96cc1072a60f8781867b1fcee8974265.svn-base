@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+	
+	<!--使用注解依赖注入 -->
+	<!--配置该标签使@Autowired生效 -->
+	<context:annotation-config />
+	
+<!-- 	<context:component-scan base-package="com.transaction"/>  -->
+		
+	<!--引入propertise文件  -->
+	<context:property-placeholder location="classpath:db.properties"/>	
+
+	<!--配置连接池  -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+		<property name="user" value="${user}" />
+		<property name="password" value="${passwd}" />
+	</bean>
+	
+	<!--配置AccountDao  -->
+	<bean id="AccountDao" class="com.transaction.dao.AccountDaoImpl">
+		<!--将数据源注入AccountDao  -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--配置AccountService  -->
+	<bean id="AccountService" class="com.transaction.service.AccountServiceImpl_anno ">
+<!--!!!!!!!!!!!!!!!已经使用了@AutoWired不需要进行二次注入！！！！！！！！！！！！-->
+		<!--注入 AccountDao -->
+<!-- <property name="AccountDao" ref="AccountDao"></property> -->
+	</bean>
+	
+	
+	<!--开启注解进行事务管理  -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!--配置事务管理器  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+</beans>

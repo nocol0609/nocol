@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.java.yuebei&apos; to &apos;javaTest&apos;&#x0D;&#x0A;- Original project: &apos;JavaDesign&apos;&#x0D;&#x0A;- Original element: &apos;com.java.yuebei&apos;&#x0D;&#x0A;- Renamed element: &apos;com.java.javaTest&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;yuebei&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.java{yuebei.java[yuebei" matchStrategy="1" name="javaTest" qualified="false" references="true" similarDeclarations="false" stamp="1498813711957" textual="false" version="1.0"/>
+</session>

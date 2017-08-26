@@ -1,0 +1,30 @@
+
+public class MyList2 {
+	private long[] arr;
+	private int elements;
+
+	public MyList2() {
+		arr = new long[10];
+	}
+
+	public MyList2(int maxsize) {
+		arr = new long[maxsize];
+	}
+
+	public void add(long value) {
+		int i;
+		for (i = 0; i < elements; i++) {
+			if (arr[i] > value) {
+				break;
+			}
+		}
+
+		for (int j = elements; j > i; j--) {
+			arr[j] = arr[j - 1];
+		}
+
+		arr[i] = value;
+		ellements++;
+
+	}
+}

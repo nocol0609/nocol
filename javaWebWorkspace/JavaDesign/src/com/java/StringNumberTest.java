@@ -1,0 +1,36 @@
+package com.java;
+
+import java.util.HashMap;
+import java.util.Set;
+
+public class StringNumberTest {
+	public static void main(String[] args) {
+		String s = "中国aadf的111萨bbb菲的zz萨菲";
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
+			Integer number = map.get(c);
+			if (number == null) {
+				number = 1;
+			} else {
+				number = number + 1;
+				map.put(c, number);
+			}
+		}
+
+		/*
+		 * Set<Entry<Character, Integer>> entries = map.entrySet();
+		 * 
+		 * for (Entry<Character, Integer> entry : entries) {
+		 * System.out.println("字符" + entry.getKey() + "出现了：" +
+		 * entry.getValue()); }
+		 */
+
+		Set<Character> keySet = map.keySet();
+		for (Character c : keySet) {
+			System.out.println("字符" + c + "出现了" + map.get(c) + "次");
+		}
+
+	}
+}

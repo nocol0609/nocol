@@ -1,0 +1,4 @@
+
+	<!ELEMENT students ANY>
+	<!ELEMENT student(name,age,gender,adress,score,study)>
+	<!ELEMENT adress "南昌青山湖区双港东大街">

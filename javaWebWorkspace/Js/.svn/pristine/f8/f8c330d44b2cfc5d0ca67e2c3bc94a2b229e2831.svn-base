@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.8.3.js"></script>
+<script type="text/javascript">
+/* 	//方式一：
+	function myclick() {
+		//使用jquery弹出奇数的tr标签下的td里的值
+		$("table tr:not(:last):even").each(function() {
+			//在tr标签中查询所有的td标签
+			var $td = $(this).find("td");
+			$td.each(function() {
+				alert($(this).text());
+			});
+		});
+	} */
+	
+	
+	//方式二
+	function myclick() {
+		//使用jquery弹出奇数的tr标签下的td里的值
+     var $td=$("table tr:not(:last):even td");//直接定位td
+	 $td.each(function(){
+			alert($(this).text());
+		});
+	}
+	
+	
+</script>
+</head>
+<body>
+	<table border="2" align="center" width="30%">
+		<tr>
+			<td>A1</td>
+			<td>A2</td>
+			<td>A3</td>
+		</tr>
+		<tr>
+			<td>B1</td>
+			<td>B2</td>
+			<td>B3</td>
+		</tr>
+		<tr>
+			<td>C1</td>
+			<td>C2</td>
+			<td>C3</td>
+		</tr>
+		<tr>
+			<td>D1</td>
+			<td>D2</td>
+			<td>D3</td>
+		</tr>
+		<tr>
+			<td colspan="3" align="center"><input type="button"
+				value="  测  试  " onclick="myclick()" /></td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
+
+

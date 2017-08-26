@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.OrderLineDao">
+	
+	<resultMap type="Order" id="OrderResult">
+		<id property="id" column="id"/>		
+	</resultMap>
+	
+	<resultMap type="Product" id="ProductResult">
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="OrderLine" id="OrderLineResult">
+		<id property="id" column="id"/>
+		<result property="amount" column="amount"/>
+		<result property="single_price" column="single_price"/>
+		<result property="product_version" column="product_version"/>
+		<association property="product" resultMap="ProductResult"></association>
+		<association property="order" resultMap="OrderResult"></association>
+	</resultMap>
+	
+	<!--生成订单项  -->
+	<insert id="addOrderLine" parameterType="OrderLine">
+		insert into d_orderline(id,amount,single_price,product_version,order_id,product_id)
+		values(#{id},#{single_price},#{product_version},#{product.id},#{order.id});
+	</insert>
+	
+	<!-- 根据订单id查询订单项 -->
+	<select id="findOrderLineByOrderId" parameterType="string" resultType="OrderLine">
+		select o.id,o.amount,o.single_price,o.product_version
+		from d_orderline o
+		where order_id=#{order.id}
+	</select>
+	
+	<!-- 根据订单id删除订单项 -->
+	<delete id="delOrderLineByOrderId" parameterType="string">
+		delete from d_orderline
+		where order_id=#{order.id}
+	</delete>
+	
+</mapper>

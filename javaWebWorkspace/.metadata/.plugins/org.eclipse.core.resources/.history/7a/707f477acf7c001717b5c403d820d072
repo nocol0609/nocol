@@ -1,0 +1,10 @@
+package com.nocol.link.doublelink;
+
+/**
+ * 自定义双向链表
+ *	
+ * @author Nocol 下午2:45:01
+ */
+public class DoubleLinkList {
+	
+}	

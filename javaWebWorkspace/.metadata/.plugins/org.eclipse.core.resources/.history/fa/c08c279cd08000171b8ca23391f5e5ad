@@ -1,0 +1,14 @@
+package com.test_01;
+
+
+abstract class test2{
+	
+}
+
+interface dd{
+	
+}
+
+public  abstract class test2 implements dd {
+	
+}

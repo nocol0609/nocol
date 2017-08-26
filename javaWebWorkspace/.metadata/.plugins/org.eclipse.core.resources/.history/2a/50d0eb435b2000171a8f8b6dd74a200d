@@ -1,0 +1,8 @@
+package com.nocol.param;
+
+public class Connection {
+	public static void main(String[] args) throws Exception {
+		java.sql.Connection connection = JdbcUtils.getConnection();
+		System.out.println(connection);
+	}
+}

@@ -1,0 +1,29 @@
+package com.test_01;
+
+import java.util.Scanner;
+
+public class test {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("ÇëÊäÈë£º");
+		String s = scanner.nextLine();
+
+		String string = reverse(s);
+
+		/*
+		 * char[] ch = s.toCharArray(); print(ch); scanner.close();
+		 */
+	}
+
+	private static String reverse(String s) {
+		// TODO Auto-generated method stub
+		return reverse(s.substring(1) + s.charAt(0));
+	}
+
+	private static void print(char[] ch) {
+		// TODO Auto-generated method stub
+		for (int i = ch.length - 1; i >= 0; i--) {
+			System.out.print(ch[i] + "");
+		}
+	}
+}

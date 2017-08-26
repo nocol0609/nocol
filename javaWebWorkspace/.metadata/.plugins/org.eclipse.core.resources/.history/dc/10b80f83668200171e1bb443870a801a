@@ -1,0 +1,19 @@
+package com.nocol.tree;
+
+/**
+ * ¶ş²æÊ÷²âÊÔ
+ * 
+ * @author Nocol ÏÂÎç5:34:10
+ */
+public class TreeTest {
+	public static void main(String[] args) {
+		Tree tree = new Tree();
+		tree.insert(4);
+		tree.insert(8);
+		tree.insert(2);
+		tree.insert(5);
+		tree.insert(1);
+
+		System.out.println(tree.root.data);
+	}
+}

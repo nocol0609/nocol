@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>regist.html</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+</head>
+<body>
+
+
+	<!--超链接的绝对路径：Tomcat的根路径（locahost:8088） -->
+	<!--  <a href="/Servlet/Third">调用servlet</a> 绝对路径 -->
+
+	<!--相对路径：相对于当前路径   -->
+	<!-- <a href="Third">调用servlet</a> 绝对路径 -->
+
+
+
+	<table align="center" bgcolor="red" width="500px">
+		<tr align="center">
+			<td><font size="6"><b>登录页面</b></font></td>
+		</tr>
+	</table>
+	<br />
+
+	<!--form表单的绝对路径：Tomcat的根路径（locahost:8088）  -->
+	<!-- <form action="/Servlet/RegistServlet" method="get"> -->
+
+	<!-- form表单的相对路径：相对于当前路径 -->
+	
+	<form action="LoginServlet" method="get">
+		<table cellpadding="3px" cellspacing="3px" border="1px"
+			bordercolor="red" align="center">
+			<tr>
+				<td>用户名</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>密码</td>
+				<td><input type="password" name="pwd"></td>
+			</tr>
+
+			<tr align="center">
+				<td colspan="2"><input type="submit" value="提交"> <input
+					type="reset" value="重置"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

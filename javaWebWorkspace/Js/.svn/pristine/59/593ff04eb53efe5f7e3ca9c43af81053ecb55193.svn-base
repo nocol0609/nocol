@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="text" />
+	<input type="button" value="点击" />
+</body>
+<script type="text/javascript">
+	var bodyNode = document.getElementsByTagName("body")[0];
+	/* var parentNode=bodyNode.parentNode;
+	 alert("父节点是:"+parentNode.nodeName);
+	 */
+
+	var children = bodyNode.children;
+	for (var i = 0; i < children.length; i++) {
+		alert("子节点有：" + children[i].nodeName);
+		
+	}
+</script>
+</html>

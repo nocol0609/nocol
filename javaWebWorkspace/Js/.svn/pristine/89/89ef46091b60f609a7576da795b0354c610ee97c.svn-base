@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	num = 1;
+	function add() {
+		var inputNode = document.createElement("input");
+		inputNode.setAttribute("type", "button");
+		inputNode.setAttribute("value", "按钮" + num);
+		num++;
+	var bodyNode=document.getElementsByTagName("body")[0];
+	bodyNode.appendChild(inputNode);
+	}
+</script>
+</head>
+<body>
+	<input type="button" value="添加" onclick="add()" />
+</body>
+</html>

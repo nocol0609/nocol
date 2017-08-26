@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//WebContent/css=UTF-8
+encoding//WebContent/css/order.css=UTF-8
+encoding//src/com/ssm/bean=UTF-8
+encoding//src/com/ssm/listener=UTF-8
+encoding//src/com/ssm/listener/MyApplicationListener.java=GBK
+encoding//src/com/ssm/service/Impl/OrderServiceImpl.java=UTF-8
+encoding//src/com/ssm/service/OrderService.java=UTF-8

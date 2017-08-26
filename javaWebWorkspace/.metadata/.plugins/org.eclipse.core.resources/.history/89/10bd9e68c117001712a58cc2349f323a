@@ -1,0 +1,26 @@
+package com.java.test;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class PictureServer {
+	public static void main(String[] args) throws Exception{
+		ServerSocket ss=new ServerSocket(6768);
+		Socket s=ss.accept();
+		
+		//封装通道流
+		BufferedReader br=new BufferedReader(new InputStreamReader(s.getInputStream()));
+		//封装文件输出目录
+		BufferedWriter bw=new BufferedWriter(new FileWriter("aa.txt"));
+		String line=null;
+		while((line=br.readLine())!=null){
+			bw.write(line);
+		}
+		bw.close();
+		
+	}
+}

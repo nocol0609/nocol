@@ -1,0 +1,21 @@
+package com.test_01;
+
+import java.util.Scanner;
+
+public class test {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("ÇëÊäÈë£º");
+		String s = scanner.nextLine();
+		char[] ch = s.toCharArray();
+		print(ch);
+		scanner.close();
+	}
+
+	private static void print(char[] ch) {
+		// TODO Auto-generated method stub
+		for (int i = ch.length - 1; i > 0; i--) {
+			System.out.print(ch[i] + "");
+		}
+	}
+}

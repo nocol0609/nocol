@@ -1,0 +1,115 @@
+package com.nocol.Web.Servlet;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.nocol.Bean.Category;
+import com.nocol.Bean.CategoryDetail;
+import com.nocol.Bean.IShopCart;
+import com.nocol.Bean.OrderLine;
+import com.nocol.Bean.Product;
+import com.nocol.Service.CategoryDetailService;
+import com.nocol.Service.CategoryService;
+import com.nocol.Service.ProductService;
+import com.nocol.Service.Impl.CategoryDetailServiceImpl;
+import com.nocol.Service.Impl.CategoryServiceImpl;
+import com.nocol.Service.Impl.ProductServiceImpl;
+
+@WebServlet("/addCart")
+public class AddCartServlet extends HttpServlet implements IShopCart {
+	
+	private Map<Long,OrderLine> cartmap;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// 获取购买商品的id
+		String prod_id = request.getParameter("id");
+		// 购买的数量
+		String number = request.getParameter("number");
+				
+		cartmap =(Map<Long,OrderLine>) request.getSession().getAttribute("cartmap");
+			
+		ProductService service = new ProductServiceImpl();
+		Product product = service.findProdById(prod_id);
+	
+		try {
+			//添加购物车
+			addProduct(product);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("添加到购物车的产品："+product);
+		
+	
+			// 重定向购物车页面
+		response.sendRedirect("shopCart.jsp");
+		
+	}
+
+	@Override
+	public void addProduct(Product product) throws Exception {
+		// TODO Auto-generated method stub
+		System.out.println("进入ShopCart的add()方法！");
+		long number = 1;
+		long id = product.getId();
+		if(cartmap.containsKey(id)) {
+			OrderLine orderline = (OrderLine) cartmap.get(id);
+			number = orderline.getAmount()+1L;
+			orderline.setAmount(number);
+		}else {
+			OrderLine orderline = new OrderLine();
+			orderline.setAmount(new Long(number));
+			orderline.setProduct(product);
+			cartmap.put(id, orderline);
+		}
+
+	}
+
+	@Override
+	public void removeProduct(Integer productid) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeAllProducts() throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateProduct(Integer productid, Integer number) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BigDecimal getTotalPrice() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Iterator<OrderLine> getOrderlines() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+}

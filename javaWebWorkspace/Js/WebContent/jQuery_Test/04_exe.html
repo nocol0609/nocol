@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>
+  </head>
+  <body>
+  	<div>	
+	  	<select style="width:60px" multiple size="10" id="leftID">
+	  		<option>选项A</option>
+	  		<option>选项B</option>
+	  		<option>选项C</option>
+	  		<option>选项D</option>
+	  		<option>选项E</option>
+	  		<option>选项F</option>
+	  		<option>选项G</option>
+	  		<option>选项H</option>
+	  		<option>选项I</option>
+	  		<option>选项J</option>
+	  	</select>
+  	</div>
+  	<div style="position:absolute;left:100px;top:60px">
+  		<input type="button" value="批量右移" id="rightMoveID"/>
+  	</div>
+  	<div style="position:absolute;left:100px;top:90px">
+  		<input type="button" value="全部右移" id="rightMoveAllID"/>
+  	</div>
+  	
+  	<div style="position:absolute;left:220px;top:20px">	
+	  	<select multiple size="10" style="width:60px" id="rightID">
+	  	</select>
+  	</div>
+  	
+  </body>
+  
+  <script type="text/javascript">
+  		
+  		//双击右移
+  		//定位左边的下拉框，同时添加双击事件
+  		$("#leftID").dblclick(function(){
+  			var $selectrdNode=$("#leftID option:selected");
+  			$("#rightID").append( $selectrdNode );
+  		});
+  		
+	  	//批量右移
+	  	//定位批量右移按钮，同时添加单击事件
+		 $("#rightMoveID").click(function(){
+			 var $selectrdNode=$("#leftID option:selected");
+	  		$("#rightID").append( $selectrdNode );
+		 });
+
+  		//全部右移
+  		//定位全部右移按钮，同时添加单击事件
+  		 $("#rightMoveAllID").click(function(){
+			 var $selectrdNode=$("#leftID option");
+	  		$("#rightID").append( $selectrdNode );
+		 });
+  		
+  </script>
+  
+</html>
+
+
+
+
+
+
+
+
+
+

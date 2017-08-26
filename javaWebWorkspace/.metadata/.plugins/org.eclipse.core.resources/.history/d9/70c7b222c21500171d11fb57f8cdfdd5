@@ -1,0 +1,22 @@
+package com.xml.sax;
+
+import java.io.File;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.helpers.DefaultHandler;
+
+
+class EmployyeHander extends DefaultHandler{
+	
+}
+
+public class EmployeeSax {
+	public static void main(String[] args)throws Exception {
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		SAXParser parser = factory.newSAXParser();
+		
+		parser.parse(new File("employee.xml"), new EmployyeHander());
+	}
+}

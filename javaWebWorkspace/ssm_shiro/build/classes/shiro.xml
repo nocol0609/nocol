@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--1、 配置 安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="cacheManager"/>
+        <!--单个Realm  -->
+       <!--  <property name="realm" ref="myRealm"/> -->
+       
+        <!--若有多个Realm需要在安全管理器中装配认证器  -->
+        <property name="authenticator" ref="authenticator"></property>
+        <!--装配存在的realm  -->
+        <property name="realms">
+        	<list>
+        		<ref bean="myRealm"/>
+        		<ref bean="secondRealm"/>
+        	</list>
+        </property>
+        
+        <!--设置rememberMe的时长,单位为秒  -->
+        <property name="rememberMeManager.cookie.MaxAge" value="10"></property>
+    </bean>
+	
+	<!--2、 配置緩存管理器 -->  
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<!-- 指定 ehcache 的配置文件 -->
+        <property name="cacheManagerConfigFile" value="classpath:ehcache.xml"/>
+    </bean>
+
+	<!--3、 配置进行授权和认证的 Realm --> 
+	
+	<!--多个realm的话需要配置认证器  -->
+	<bean id="authenticator" class="org.apache.shiro.authc.pam.ModularRealmAuthenticator">
+		<property name="authenticationStrategy">
+			<!--认证策略AtLeastOneSuccessfulStrategy：只要第一个realm匹配成功即认证成功，并返回所有realm认证成功的信息 -->
+			<bean class="org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy"></bean>
+		</property>
+	</bean>
+	
+	<!--第一个realm  -->
+	<bean id="myRealm" class="com.ssm.shiro.myRealm">
+		<!--
+			凭证匹配器：会将前台接收的密码（明文）自动转换为md5加密后的密码，不需要手动加密再和数据库查询的对比
+		  -->
+		<!--将凭证匹配器设置到realm中,realm按照凭证匹配器的要求进行散列  -->
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<!--散列算法  -->
+				<property name="hashAlgorithmName" value="md5"></property>
+				<!--散列次数  -->
+				<property name="hashIterations" value="1"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<!--第二个Realm  -->
+	<bean id="secondRealm" class="com.ssm.shiro.secondeRealm">
+		<property name="credentialsMatcher">
+			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+				<property name="hashAlgorithmName" value="sha1"></property>
+				<property name="hashIterations" value="1"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	
+    <!--4、 配置 Bean 后置处理器: 会自动的调用配置在Spring容器中的 shiro bean 的生命周期方法. -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	 
+	<!--5、 开启在Spring容器中使用shiro注解，前体制必须配置了lifecycleBeanPostProcessor才能使用-->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+	
+	
+    <!--6、 配置 ShiroFilter bean: 该 bean 的 id 必须和 web.xml 文件中配置的 shiro filter 的 name 一致  -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+    	<!-- 装配 安全管理器 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 配置登陆的页面 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 登陆成功后的页面 -->
+        <property name="successUrl" value="/index.jsp"/>
+        <!--无权限访问的页面  -->
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+		<!-- 具体配置需要拦截哪些 URL, 以及访问对应的 URL 时使用 Shiro 的什么 Filter 进行拦截.  -->
+		<!--		
+			格式：url=过滤器			
+			1、anon：表示可以匿名访问
+			2、authc：表示必须认证（即登录后）之后才能访问
+			3、logout：表示登出的过滤器（登出url可以不存在，由shiro拦截,清除session）
+			4、roles：角色过滤器
+		  -->
+        <property name="filterChainDefinitions"><!--配置bean也可以  -->
+            <value>
+            	<!-- 配置登出: 使用 logout 过滤器 -->
+                 
+                /login.jsp = anon
+                /shiro/login.action=anon
+                /shiro/logout.action = logout
+                
+                <!--下面两个jsp即有权限限制又有认证限制  -->
+                /user.jsp=authc,roles[user]
+                /admin.jsp=authc,roles[admin]
+                
+                <!--只要是通过rememberme 记住的 可以访问index  -->
+                /index.jsp=user
+                
+             
+                <!-- /** = authc 所有url都必须认证通过才可以访问,一般写在最后面-->
+                /** = authc
+                <!-- /** = anon所有url都可以匿名访问 -->
+                
+            </value>
+        </property>
+    </bean>
+	
+	<!--配置注解权限  -->
+	<bean id="annotationService" class="com.ssm.service.annotationService"></bean>
+</beans>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nocol.pojo.BookMapper">
+	<resultMap type="Book" id="BookResult">
+		<id property="id" column="id" />
+		<result property="bookName" column="bookname" />
+		<result property="author" column="author" />
+		<result property="publishDate" column="publishDate" />
+		<result property="price" column="price" />
+	</resultMap>
+	<insert id="addBook" parameterType="Book" keyColumn="bookname">
+		INSERT INTO
+		BOOK(ID,BOOKNAME,AUTHOR,PUBLISHDATE,PRICE)
+		VALUES(#{id},#{bookName},#{author},#{publishDate},#{price})
+	</insert>
+	<delete id="removeBook" parameterType="Integer">
+		DELETE BOOK WHERE ID=#{id}
+	</delete>
+	<select id="findBookByName" parameterType="String" resultType="Book">
+		SELECT * FROM BOOK WHERE BOOKNAME=#{bookName}
+	</select>
+	<select id="findBookById" parameterType="Integer" resultType="Book">
+		SELECT * FROM BOOK WHERE ID=#{id}
+	</select>
+	<select id="findAllBooks" resultMap="BookResult">
+		SELECT * FROM BOOK
+	</select>
+	<select id="findAllBooksName" resultType="String">
+		SELECT bookName FROM
+		BOOK
+	</select>
+	<select id="findCountOfBook" resultType="Integer">
+		SELECT COUNT(*) FROM
+		BOOK
+	</select>
+	<update id="updateBook" parameterType="Book">
+		UPDATE BOOK SET
+		BOOKNAME=#{bookName},AUTHOR=#{author},PRICE=#{price}
+		WHERE ID = #{id}
+	</update>
+	<select id="findBookNameAndAuthor" resultType="map">
+		SELECT
+		BOOKNAME,AUTHOR
+		FROM BOOK
+	</select>
+</mapper>

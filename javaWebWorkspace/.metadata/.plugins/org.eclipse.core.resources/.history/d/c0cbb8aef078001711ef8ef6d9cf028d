@@ -1,0 +1,83 @@
+package com.error.inter;
+
+import java.util.Arrays;
+
+public class SortTest {
+	public static void main(String[] args) {
+		int[] arr = { 7, 4, 2, 3, 5, 1, 6 };
+		System.out.println(Arrays.toString(arr));
+		//quickSort(arr, 0, 6);
+		//insertSort(arr);
+		//selectSort(arr);
+		//bubbleSort(arr);
+		megeSort(arr,0,6);
+		System.out.println(Arrays.toString(arr));
+	}
+
+	private static void megeSort(int[] arr, int l, int r) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	private static void bubbleSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<arr.length-1;i++){
+			for(int j=0;j<arr.length-1-i;j++){
+				if(arr[j]>arr[j+1]){
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+	}
+
+	private static void selectSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for(int i=0;i<arr.length-1;i++){
+			for(int j=i+1;j<arr.length;j++){
+				if(arr[j]<arr[i]){
+					int temp=arr[j];
+					arr[j]=arr[i];
+					arr[i]=temp;
+				}
+			}
+		}
+	}
+
+	private static void insertSort(int[] arr) {
+		// TODO Auto-generated method stub
+		for(int i=1;i<arr.length;i++){
+			for(int j=i;(j>0)&&(arr[j]<arr[j-1]);j--){
+				int temp=arr[j];
+				arr[j]=arr[j-1];
+				arr[j-1]=temp;
+			}
+		}
+	}
+
+	private static void quickSort(int[] arr, int l, int r) {
+		// TODO Auto-generated method stub
+		if (l < r) {
+			int i = l;
+			int j = r;
+			int key = arr[l];
+
+			while (i < j) {
+				while (i < j && arr[j] >= key) {
+					j--;
+				}
+				arr[i] = arr[j];
+
+				while (i < j && arr[i] <= key) {
+					i++;
+				}
+				arr[j] = arr[i];
+			}
+			    arr[i] = key;
+			    quickSort(arr, i+1, r);
+			    quickSort(arr, l, i-1);
+		}
+	}
+}

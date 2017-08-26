@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<a href="#">标题一</a>
+	<a href="#">标题二</a>
+	<a href="#">标题三</a></br>
+	<input type="button" value="设置Url" onclick="showUrl()"/>
+	</hr>
+</body>
+<script type="text/javascript">
+
+/* var allNode=document.all;
+for (var i = 0; i < allNode.length; i++) {
+	alert(allNode[i].nodeName);
+} */
+
+function showUrl(){
+	var links=document.links;
+	for (var i = 0; i < links.length; i++) {
+		links[i].href="http://www.baidu.com";
+	}
+}
+
+
+
+</script>
+</html> 

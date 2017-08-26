@@ -1,0 +1,10 @@
+package com.nocol.link.doublelink;
+
+/**
+ * 测试自定义双向流连便
+ *	
+ * @author Nocol 下午4:19:00
+ */
+public class DoubleLinkListTest {
+
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 加载application.properties文件中的数据key-value的形式 -->
+	<properties resource="applications.properties">
+		<!-- 注意:是applications.properties文件中的值优先级高 -->
+		<property name="username" value="nocol" />
+		<property name="password" value="123" />
+	</properties>
+	
+	<!--表示在该包下的实体类的别名为各自的实体类名  -->
+	<typeAliases>
+		<!-- <typeAlias alias="Student" type="com.nocol.pojo.Student" /> -->
+		<package name="com.nocol.pojo" />
+	</typeAliases>
+	
+	<!--自定义转换器需要在配置文件中注册  -->
+	<typeHandlers>
+		<typeHandler handler="com.nocol.typehandlers.PhoneTypeHandler" />
+	</typeHandlers>
+	
+	<!--指默认连接环境  -->
+	<environments default="development">
+		<!--连接环境信息  -->
+		<environment id="development">
+			<!-- mybatis使用jdbc事务管理 （自动提交） -->
+			<transactionManager type="JDBC" />
+			<!-- mybatis通过连接池类获取连接 -->
+			<dataSource type="POOLED">
+				<!--配置与数据库交互的必要属性  -->
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+
+		<environment id="test">
+			<!-- 使用jdbc事务管理 （自动提交） -->
+			<transactionManager type="JDBC" />
+			<!-- 数据库连接池 -->
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="oracle" />
+				<property name="password" value="123" />
+			</dataSource>
+		</environment>
+
+	</environments>
+	
+	<mappers>
+		<mapper resource="com/nocol/pojo/StudentMapper.xml" />
+		<mapper resource="com/nocol/extend/ExtendMapper.xml" />
+		<mapper resource="com/nocol/onetoone/OneToOneMapper.xml" />
+		<mapper resource="com/nocol/onetomany/OneToManyMapper.xml" />
+		<mapper resource="com/nocol/manytomany/ManyToManyMapper.xml" />
+		<mapper resource="com/nocol/dynamic/DynamicMapper.xml" />
+		<!--映射接口  -->
+		<mapper class="com.nocol.annocation.AnnocationMapper" />
+		
+		<!--url可用于指定目录下的映射文件 -->
+		<!-- <mapper url=""/> -->
+	</mappers>
+
+</configuration>

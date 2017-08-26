@@ -1,0 +1,26 @@
+package com.java.test;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+
+public class PictureClient {
+	public static void main(String[] args) throws Exception {
+		Socket s = new Socket("192.168.179.2", 10000);
+		// 封装通道流
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+		// 封装图片目录
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("a.txt")));
+		String line = null;
+		while ((line = br.readLine()) != null) {
+			bw.write(line);
+			bw.newLine();
+			bw.flush();
+		}
+		br.close();
+		s.close();
+	}
+}

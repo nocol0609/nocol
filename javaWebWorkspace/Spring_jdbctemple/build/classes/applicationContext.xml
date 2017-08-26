@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 在配置文件 引入约束 xsd schema 约束 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	 <!--Spring内置连接池配置  -->
+	 <!--配置连接池(不要配置文件)  -->
+<!-- 	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 	 	<property name="driverClassName" value="oracle.jdbc.OracleDriver" /> -->
+<!-- 	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" /> -->
+<!-- 	 	<property name="username" value="oracle" /> -->
+<!-- 	 	<property name="password" value="123" /> -->
+<!-- 	 </bean> -->
+	 <!--配置jdbcTemplate  -->
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 	<property name="dataSource" ref="dataSource"/> -->
+<!-- 	</bean> -->
+	
+	<!--=============================================================================-->
+	
+	<!-- Apache Dbcp 连接池 -->
+	<!--配置连接池(不要配置文件)  -->
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">  -->
+<!-- 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />  -->
+<!-- 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />  -->
+<!-- 		<property name="username" value="oracle" />  -->
+<!-- 		<property name="password" value="123" /> -->
+<!-- 	</bean>  -->
+	<!--配置jdbcTemplate  -->
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> -->
+<!-- 		<property name="dataSource" ref="dataSource"/> -->
+<!-- 	</bean> -->
+	
+	<!--==================================================================================  -->
+	
+	<!-- c3p0连接池 -->
+	<!--配置连接池  -->
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"> -->
+<!-- 		<property name="driverClass" value="oracle.jdbc.OracleDriver" /> -->
+<!-- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE" /> -->
+<!-- 		<property name="user" value="oracle" /> -->
+<!-- 		<property name="password" value="123" /> -->
+<!-- 	</bean> -->
+	<!--配置jdbcTemplate  -->
+<!-- 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  -->
+<!--  		<property name="dataSource" ref="dataSource"/>  -->
+ <!-- 	</bean>  -->
+	
+	<!--================================================================================  -->
+	
+	<!--引入propertise文件  -->
+	
+	<!--传统方式引入  -->
+<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="locations" value="classpath:db.properties"></property> -->
+<!-- 	</bean> -->
+	
+	<!--简化方式  -->
+	<context:property-placeholder location="classpath:db.properties"/>	
+	<!--配置连接池  -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+		<property name="user" value="${user}" />
+		<property name="password" value="${passwd}" />
+	</bean>
+	<!--配置jdbcTemplate  -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"> 
+ 		<property name="dataSource" ref="dataSource"/> 
+ 	</bean> 
+	
+	<!--将jdbcTemplate注入Dao  -->
+	<bean id="ProductDao" class="com.spring.web.ProductDao">
+	
+		<!--注入dataSource或者直接注入jdbcTemplate都可以  -->
+		<!--注入数据源（dataSource）时自动创建jdbcTemplate模板对象  -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+</beans>

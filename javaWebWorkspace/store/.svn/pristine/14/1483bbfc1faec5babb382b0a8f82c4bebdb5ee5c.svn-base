@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssm.dao.OrderDao">
+	
+	<resultMap type="User" id="UserResult">
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="Receiver" id="ReceiverResult">
+		<id property="id" column="id"/>
+	</resultMap>
+	
+	<resultMap type="Order" id="OrderResult">
+		<id property="id" column="id"/>
+		<result property="start_date" column="start_date"/>
+		<result property="sum_price" column="sum_price"/>
+		<result property="payway_id" column="payway_id"/>
+		<result property="status" column="status"/>
+		<association property="user" resultMap="UserResult"></association>
+		<association property="receiver" resultMap="ReceiverResult"></association>		
+	</resultMap>
+	
+	<!--添加订单  -->
+	<insert id="addOrder" parameterType="Order">
+		insert into d_order(id,start_date,sum_price,payway_id,status,user_id,receiver_id)
+		values(#{id},sysdate,#{sum_price},#{payway_id},#{status},#{user.id},#{receiver.id})
+	</insert>
+	
+	<!--根据用户id查询订单 -->
+	<select id="findOrderByUserId" parameterType="int" resultMap="OrderResult">
+		select * 
+		from d_order
+		where user_id=#{user_id}
+	</select>
+	
+	<!--根据订单id删除订单  -->
+	<delete id="delOrderByOrderId" parameterType="string">
+		delete from d_order where id=#{id}
+	</delete>
+</mapper>

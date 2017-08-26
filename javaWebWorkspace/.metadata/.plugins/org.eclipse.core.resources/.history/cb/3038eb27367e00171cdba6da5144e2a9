@@ -1,0 +1,76 @@
+
+public class MyList2 {
+	private long[] arr;
+	private int elements;
+
+	public MyList2() {
+		arr = new long[10];
+	}
+
+	public MyList2(int maxsize) {
+		arr = new long[maxsize];
+	}
+
+	public void add(long value) {
+		int i;
+		for (i = 0; i < elements; i++) {
+			if (arr[i] > value) {
+				break;
+			}
+		}
+
+		for (int j = elements; j > i; j--) {
+			arr[j] = arr[j - 1];
+		}
+
+		arr[i] = value;
+		elements++;
+
+	}
+
+	public void display() {
+		System.out.print("[");
+		for (int i = 0; i < elements; i++) {
+			System.out.print(i);
+		}
+		System.out.println("]");
+	}
+
+	public int binarySeach(long value) {
+
+		int low = 0;
+		int pow = elements;
+		int mid = 0;
+
+		while (true) {
+			mid = (low + pow) / 2;
+			if (arr[mid] == value) {
+				return mid;
+			} else if (low > pow) {
+				return -1;
+			} else {
+				if (arr[mid] > value) {
+					pow = mid - 1;
+				} else {
+					low = mid + 1;
+				}
+			}
+		}
+
+	}
+
+	public int Search(long value) {
+		int i;
+		for (i = 0; i < elements; i++) {
+			if (arr[i] == value) {
+				break;
+			}
+		}
+
+		if (i == elements) {
+			return -1;
+		} else {
+			return i;
+		}
+	}
+}

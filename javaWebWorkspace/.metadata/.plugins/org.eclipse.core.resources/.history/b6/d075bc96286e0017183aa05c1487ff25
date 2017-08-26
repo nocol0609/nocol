@@ -1,0 +1,55 @@
+package com.hbase.api;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.client.HBaseAdmin;
+import org.junit.Test;
+
+public class HbaseDemo {
+	
+	@Test
+	public void createTable (){
+		
+		try {
+			
+			//创建HbaseAdmin对象
+			Configuration configuration=new Configuration();
+			
+			configuration.set("hbase.zookeeper.quorum", "192.168.44.129");
+			
+			HBaseAdmin admin=new HBaseAdmin(configuration);
+			
+			//判断要创建的表是否存在，若存在就删除
+			if(admin.tableExists("student")){
+				admin.disableTable("student");
+				admin.deleteTable("student");
+			}
+			
+			//创建表描述对象
+			HTableDescriptor tableDescriptor=new HTableDescriptor("student"); 
+			
+			//创建列族描述对象
+			HColumnDescriptor columnDescriptor =new HColumnDescriptor("info");
+			
+			//启动读缓存
+			columnDescriptor.setBlockCacheEnabled(true);
+			//是否要加载到内存
+			columnDescriptor.setInMemory(false);
+			//设置最大版本数
+			columnDescriptor.setMaxVersions(1);
+			
+			//为表指定列族
+			tableDescriptor.addFamily(columnDescriptor);	
+			
+			//创建表
+			admin.createTable(tableDescriptor);
+					
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

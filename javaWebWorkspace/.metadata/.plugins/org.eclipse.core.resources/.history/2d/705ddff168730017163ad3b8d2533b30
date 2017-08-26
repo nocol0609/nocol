@@ -1,0 +1,364 @@
+package com.hbase.api;
+
+import java.io.IOException;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.Set;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HColumnDescriptor;
+import org.apache.hadoop.hbase.HTableDescriptor;
+import org.apache.hadoop.hbase.TableName;
+import org.apache.hadoop.hbase.client.Admin;
+import org.apache.hadoop.hbase.client.Connection;
+import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.hbase.client.Delete;
+import org.apache.hadoop.hbase.client.Get;
+import org.apache.hadoop.hbase.client.Put;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.client.ResultScanner;
+import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.client.Table;
+import org.apache.hadoop.hbase.filter.BinaryComparator;
+import org.apache.hadoop.hbase.filter.ByteArrayComparable;
+import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
+import org.apache.hadoop.hbase.filter.RowFilter;
+import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
+import org.apache.hadoop.hbase.filter.SubstringComparator;
+import org.apache.hadoop.hbase.util.Bytes;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * Java api 操作Hbase数据库
+ * 
+ * @author Nocol
+ *
+ * @date 2017年7月22日
+ */
+
+public class HbaseTest {
+
+	// 读取配置
+	private Configuration config;
+	// 连接对象
+	private Connection conn;
+	// 操作DDL
+	private Admin admin;
+	// 操作DML
+	private Table table;
+
+	/**
+	 * 获取数据库连接测试
+	 */
+	@Before
+	public void getConn() {
+
+		try {
+
+			config = new Configuration();
+			// 连接zookeeper
+			config.set("hbase.zookeeper.quorum", "192.168.44.129");
+			// 获取连接
+			conn = ConnectionFactory.createConnection(config);
+			
+			System.out.println("连接成功！");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 表创建测试
+	 */
+	@Test
+	public void testCreatetable() {
+
+		try {
+			// 获取admin
+			admin = conn.getAdmin();
+
+			if (admin != null) {
+				// 判断要创建的表是否存在，若存在则删除
+				if (admin.tableExists(TableName.valueOf("table"))) {
+					// 先禁用表
+					admin.disableTable(TableName.valueOf("table"));
+					// 删除表
+					admin.deleteTable(TableName.valueOf("table"));
+				}
+			}
+ 
+			// 创建表描述对象
+			HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("table"));
+
+			// 创建列族描述对象
+			HColumnDescriptor columnDescriptor = new HColumnDescriptor(Bytes.toBytes("info"));
+
+			// 启动读缓存
+			columnDescriptor.setBlockCacheEnabled(true);
+
+			// 是否加载到内存
+			columnDescriptor.setInMemory(true);
+
+			// 设置最大版本数（最小版本数已经确定）
+			columnDescriptor.setMaxVersions(5);
+
+			// 将列族对象添加进表描述对象
+			tableDescriptor.addFamily(columnDescriptor);
+
+			// 创建表
+			admin.createTable(tableDescriptor);
+
+			System.out.println("创建表成功！");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 数据插入测试
+	 */
+	@Test
+	public void testInsert() {
+
+		try {
+
+			// 获取表对象
+			table = conn.getTable(TableName.valueOf("table"));
+
+			// 指定插入的行
+			Put put = new Put(Bytes.toBytes("001"));
+
+			// 添加列
+			put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("name"), Bytes.toBytes("tom"));
+			
+			// 将数据插入表内
+			table.put(put);
+
+			System.out.println("数据插入成功！");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 数据修改测试
+	 */
+	@Test
+	public void testUpdate(){
+		
+		try {
+			
+			//获取要修改的表
+			table = conn.getTable(TableName.valueOf("table"));
+			
+			// 指定插入的行
+			Put put = new Put(Bytes.toBytes("001"));
+
+			// 修改列
+			put.addColumn(Bytes.toBytes("info"), Bytes.toBytes("name"), Bytes.toBytes("jack"));
+						
+			// 将修改好的数据插入表内
+			table.put(put);
+
+			System.out.println("数据修改成功！");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 获取数据测试
+	 */
+	@Test
+	public void testGetdata() {
+
+		try {
+
+			// 指定要从哪张表获取数据
+			table = conn.getTable(TableName.valueOf("table"));
+
+			// 指定从哪行获取数据
+			Get get = new Get(Bytes.toBytes("001"));
+
+			// 指定查询哪个版本的数据（全部查）
+			get.setMaxVersions();    //????
+
+			// 得到结果集
+			Result result = table.get(get);
+
+			// 遍历结果集获取数据
+			showValues(result);
+
+			System.out.println("获取数据成功！");
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * 遍历结果集
+	 * 
+	 * @param result
+	 */
+	private void showValues(Result result) {
+		// TODO Auto-generated method stub
+
+		// 一个包含列族、列、版本号的嵌套map
+		NavigableMap<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> fqvmap = result.getMap();
+		Set<Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>>> fqventrys = fqvmap.entrySet();
+		for (Entry<byte[], NavigableMap<byte[], NavigableMap<Long, byte[]>>> fqventry : fqventrys) {
+			// 获取列族
+			byte[] family = fqventry.getKey();
+			// 一个包含列，版本号的嵌套map
+			NavigableMap<byte[], NavigableMap<Long, byte[]>> qvmap = fqventry.getValue();
+			Set<Entry<byte[], NavigableMap<Long, byte[]>>> qventrys = qvmap.entrySet();
+			for (Entry<byte[], NavigableMap<Long, byte[]>> qventry : qventrys) {
+				// 获取列名
+				byte[] qulifier = qventry.getKey();
+				// 一个key为版本号的map
+				NavigableMap<Long, byte[]> vmap = qventry.getValue();
+				Set<Entry<Long, byte[]>> ventrys = vmap.entrySet();
+				for (Entry<Long, byte[]> ventry : ventrys) {
+					// 获取版本号
+					Long version = ventry.getKey();
+					// 获取数据
+					byte[] value = ventry.getValue();
+					System.out.println("列族：" + Bytes.toString(family) + " " + "列名：" + Bytes.toString(qulifier) + " "
+							+ "版本号：" + version + " " + "值：" + Bytes.toString(value));
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * 过滤器测试
+	 */
+	//@Test
+	public void testScan() {
+		try {
+			//获取扫描对象
+			Scan scan = new Scan();
+			
+			//行过滤器 
+			// 1 行健范围
+			ByteArrayComparable com1 = new BinaryComparator(Bytes.toBytes("xxxx")); //比较器（条件）
+			RowFilter rf1 = new RowFilter(CompareOp.LESS, com1); //运算符+条件
+			
+			// 2 行健子串范围 
+			ByteArrayComparable com2 = new SubstringComparator("001"); //条件
+			RowFilter rf2 = new RowFilter(CompareOp.EQUAL, com2); //行键包含了某个子串 
+			
+			// 3 某个列标示符的值范围
+			SingleColumnValueFilter scf1 = new SingleColumnValueFilter
+					(Bytes.toBytes("cf1"), Bytes.toBytes("qulifier"), CompareOp.LESS_OR_EQUAL, Bytes.toBytes("xxxx"));
+			
+			// 4 匹配正则表达式 （模糊查询）
+			ByteArrayComparable com3 = new SubstringComparator("test."); //条件
+			SingleColumnValueFilter scf2 =  new SingleColumnValueFilter 
+					(Bytes.toBytes("cf1"), Bytes.toBytes("qulifier"), CompareOp.EQUAL,com3);
+			
+			// 5 匹配子串 不区分大小写
+			ByteArrayComparable com4 = new SubstringComparator("te");
+			SingleColumnValueFilter scf3 =  new SingleColumnValueFilter
+					(Bytes.toBytes("cf1"), Bytes.toBytes("qulifier"), CompareOp.EQUAL,com4);
+			
+			scan.setFilter(rf1);
+		
+			
+			//获取扫描结果集
+			ResultScanner scanner = table.getScanner(scan);
+			
+			for (Result result : scanner) {
+				showValues(result);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * 数据删除测试
+	 */
+	@Test
+	public void testDelete(){
+		
+		try {
+			
+			//获取要修改的表
+			table = conn.getTable(TableName.valueOf("t1"));
+			
+			//指定要删除的行
+			Delete delete=new Delete(Bytes.toBytes("001"));
+			
+			//指定要删除的列族及列名
+			delete.addColumns(Bytes.toBytes("info"), Bytes.toBytes("name"));
+			
+			//删除数据
+			table.delete(delete);
+			
+			System.err.println("删除数据成功！");
+			
+						
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 释放资源
+	 */
+	@After
+	public void close() {
+
+		if (admin != null) {
+			try {
+				admin.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (table != null) {
+			try {
+				table.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+}

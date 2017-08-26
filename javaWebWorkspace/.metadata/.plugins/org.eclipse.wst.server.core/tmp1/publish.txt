@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Wed Aug 09 15:13:07 CST 2017
+org.eclipse.jst.jee.server\:order=D\:\\Tools\\apache-tomcat-8.0.45\\webapps\\order
+org.eclipse.jst.jee.server\:/binary\:D\:\\Tools\\repository\\org\\springframework\\spring-web\\4.2.4.RELEASE\\spring-web-4.2.4.RELEASE.jar=D\:\\Tools\\apache-tomcat-8.0.45\\webapps\\order\\WEB-INF\\lib\\spring-web-4.2.4.RELEASE.jar

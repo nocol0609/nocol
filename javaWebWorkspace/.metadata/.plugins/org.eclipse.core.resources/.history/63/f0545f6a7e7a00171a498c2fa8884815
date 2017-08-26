@@ -1,0 +1,41 @@
+package com.nocol.stack;
+
+/**
+ * 自定义栈实现栈的基本功能
+ * 
+ * @author Nocol 下午3:52:24
+ */
+public class MyStack {
+
+	// 底层是一个数组
+	private long[] arr;
+	// 栈顶
+	private int top;
+
+	/***
+	 * 默认构造方法
+	 */
+	public MyStack() {
+		arr = new long[10];
+		top = -1; // 开始栈顶是没有元素的
+	}
+
+	/**
+	 * 带参构造，参数为数组初始化大小
+	 */
+	public MyStack(int maxsize) {
+		arr = new long[maxsize];
+		top = -1;
+	}
+
+	/**
+	 * 入栈
+	 */
+	public void push(int value) {
+
+		// 先对栈顶进行自增
+		++top;
+		// 再将数据入栈
+		arr[top] = value;
+	}
+}

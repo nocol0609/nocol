@@ -1,0 +1,38 @@
+package com.nocol.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class LoginServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String userName=req.getParameter("username");
+		String pwd=req.getParameter("password");
+		
+		System.out.println("userName="+userName);
+		System.out.println("password="+pwd);
+		
+		if("abc".equals(userName)&&"123".equals(pwd)){
+			resp.getOutputStream().write("sucess".getBytes());
+			
+		}else {
+			resp.getOutputStream().write("login fail".getBytes());
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		this.doGet(req, resp);
+	}
+}

@@ -1,0 +1,39 @@
+package com.xml.sax;
+
+import java.io.File;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+//Ω‚Œˆ¿‡
+class EmployeeHander extends DefaultHandler {
+	@Override
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		// TODO Auto-generated method stub
+		super.startElement(uri, localName, qName, attributes);
+	}
+
+	@Override
+	public void characters(char[] ch, int start, int length) throws SAXException {
+		// TODO Auto-generated method stub
+		super.characters(ch, start, length);
+	}
+
+	@Override
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		// TODO Auto-generated method stub
+		super.endElement(uri, localName, qName);
+	}
+}
+
+public class EmployeeSax {
+	public static void main(String[] args) throws Exception {
+		SAXParserFactory factory = SAXParserFactory.newInstance();
+		SAXParser parser = factory.newSAXParser();
+
+		parser.parse(new File("employee.xml"), new EmployeeHander());
+	}
+}

@@ -1,0 +1,11 @@
+package com.nocol.stack;
+
+/**
+ * 自定义栈实现栈的基本功能
+ *	
+ * @author Nocol 下午3:52:24
+ */
+public class MyStack {
+	
+	
+}

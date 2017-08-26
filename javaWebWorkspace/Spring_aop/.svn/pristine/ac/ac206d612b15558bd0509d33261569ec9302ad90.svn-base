@@ -1,0 +1,23 @@
+package com.spring.cglibproxy;
+
+/**
+ * Cglib实现代理
+ * cglib动态代理是继承代理，通过ASM字节码框架修改字节码生成新的子类，重写并增强方法的功能
+ * @author Nocol
+ *
+ */
+public class CglibTest {
+	public static void main(String[] args) {
+		
+		//目标对象
+		UserDao dao=new UserDao();
+		
+		CglibProxy cglibProxy=new CglibProxy(dao);
+		
+		//获取带对象
+		UserDao userDaoProxy = (UserDao) cglibProxy.getUserDaoProxy();
+		
+		//代理对象执行方法
+		userDaoProxy.add();
+	}
+}

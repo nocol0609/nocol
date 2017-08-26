@@ -1,0 +1,48 @@
+POST / HTTP/1.1
+Host: localhost:8099
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:32.0) Gecko/20100101 Firefox/32.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Type: multipart/form-data; boundary=---------------------------1287154624285
+Content-Length: 1211
+
+-----------------------------1287154624285
+Content-Disposition: form-data; name="filename"; filename="oracle安装使用基础.txt"
+Content-Type: text/plain
+
+1,安装： 简单的下一步，输入的两次密码是给系统的管理员system 用户设置密码 两次必须相同。
+
+2,cmd  --->  sqlplus system/xxxxx  进入oracle的黑屏界面
+
+3,新安装的oracle数据库只有一个system(xxxx)用户 所以需要新建一个用户，下面就是 添加用户的步骤。
+3.1
+	创建用户： create user briup identified by briup;
+3.2
+	给用户受理权限：grant connect,resource to briup;
+3.3
+	激活用户：alter user briup account unlock;
+
+删除用户
+	1.登入到system用户 conn briup/briup
+	2.drop user briup cascade;
+
+创建序列
+	create sequence roles_id start with 1 increment by 1;
+
+查找用户下所有的表
+	select table_name from user_tables;
+
+查询数据库下所有用户
+	select username from dba_users
+
+查询用户下有哪些序列：
+	select sequence_name from user_sequences;
+
+忘记了管理员密码：
+	1,sqlplus/nolog
+	2,conn "/as sysdba"
+	3,alter user system identified by system;
+	
+-----------------------------1287154624285--

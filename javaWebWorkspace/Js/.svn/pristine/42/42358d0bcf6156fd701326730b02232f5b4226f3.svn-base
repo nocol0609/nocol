@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>布局分类</title>
+    <meta http-equiv="keywords" content="培训,IT培训,华南地区培训">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+  	<!--引入css文件 顺序不限  -->
+    <link rel="stylesheet" href="themes/default/easyui.css" type="text/css"></link>
+    <link rel="stylesheet" href="themes/icon.css" type="text/css"></link> 
+    <!--引入js文件 顺序有限  -->
+    <script type="text/javascript" src="jquery-1.8.3.js"></script>   
+    <script type="text/javascript" src="jquery.easyui.min.js"></script> 
+	<!-- 所有的css文件和的有的js文件位置不限 --> 
+  </head>
+  <body>
+  
+	<div id="accordionID" class="easyui-accordion" 
+		 style="width:300px;height:200px;"
+		 data-options="border:true,selected:-1">   
+	
+    <div title="标题1" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">   
+        <h3 style="color:#0099FF;">Accordion for jQuery</h3>   
+       	北京
+    </div>   
+    <div title="标题2" data-options="iconCls:'icon-reload'" style="padding:10px;">   
+                   上海    
+    </div>   
+    <div title="标题3" data-options="iconCls:'icon-add'">  
+                 广州   
+     </div>   
+</div>  
+	<script type="text/javascript">
+	
+	//当加载页面时添加标题栏
+	$(function(){
+		//调用方法：$('selector').组件名('method', parameter); 
+		$("#accordionID").accordion("add",{
+			title:"标题4",
+		    iconCls:"icon-reload",
+		    content:"南京",
+		    selected:false
+		});
+		//三秒后删除一栏
+		window.setTimeout(function(){
+			$("#accordionID").accordion("remove","标题4");
+			//移除后所有标题都不被选中
+			$("#accordionID").accordion("unselect","标题1");
+			
+			//标题2被选中
+			$("#accordionID").accordion("select","标题2");
+			
+		}, 3000);
+		
+		
+	});
+
+	</script>
+
+  </body>
+</html>
+
+
+
+
+
+
+

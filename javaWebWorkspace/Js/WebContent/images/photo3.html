@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>显示和隐藏图片</title>
+
+<script type="text/javascript">
+	window.onload = function() {
+		function Photo() {
+			var img = document.images[0];
+			//隐藏方法
+			this.hide = function() {
+				img.style.visibility = "hidden";
+			}
+			//显示方法
+			this.show = function() {
+				img.style.visibility = "visible";
+			}
+		}
+		
+	}
+</script>
+
+<script type="text/javascript">
+	window.onload = function() {
+		//$()表示定位指定的标签
+		function $(str) {
+			//获取str变量的类型
+			var type = typeof (str);
+			//如果是string类型的话
+			if (type == "string") {
+				//截取字符串的第一个字符
+				var first = str.substring(0, 1);
+				//如果是#号的话
+				if ("#" == first) {
+					//获取#号之后的所有字符串
+					var end = str.substring(1, str.length);
+					alert(end);
+					//根据id定位标签
+					var element = document.getElementById(end);
+					alert(element);
+					//如果找到了
+					if (element != null) {
+						//返回标签
+						return element;
+					} else {
+						alert("查无此标签");
+					}
+				} else {
+
+				}
+			} else {
+				alert("参数必须是字符串类型");
+			}
+		}
+	}
+</script>
+
+<script type="text/javascript">
+	window.onload = function() {
+		var p = new Photo();
+		$("#hiden").onclick = function() {
+			p.hide();
+		}
+		$("#show").onclick = function() {
+			p.show();
+		}
+	}
+</script>
+</head>
+<body>
+	<img src="1.jpg" />
+	<br />
+	<input type="button" value="显示" id="show">
+	<input type="button" value="隐藏" id="hiden">
+</body>
+</html>

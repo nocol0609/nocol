@@ -1,0 +1,12 @@
+Double\ quoted\ string=0,0,0,0,0,204,147,147
+Identifier=0,0,0,0,0,223,190,149
+Keyword=0,0,0,0,0,141,203,226
+Multi-line\ comment=0,0,0,0,0,115,135,155
+Others=0,0,0,0,0,226,226,226
+PreferenceConstants.EXECUTE_SQL_ERROR_MODE=PreferenceConstants.PROMPT_MODE_ALWAYS
+SQLEditor.executeSelectedSQL.betweenDelimiter.delimiterType=go
+Single\ quoted\ string=0,0,0,0,0,204,147,147
+Single-line\ comment=0,0,0,0,0,127,159,127
+Type=0,0,0,0,0,202,230,130
+com.sybase.stf.dmp.ui.sqleditor.template.customtemplates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+eclipse.preferences.version=1

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+	//write(Math.ceil(3.14));//向上取整
+	//write(Math.floor(3.14));//向下取整
+	//write(Math.random());//产生随机数
+	// var arr=new Array(77);
+	//arr[103]=2;
+	//document.write("长度："+arr.length);
+	var arr = ["jack", "rose", "nokia"];
+//	document.write(arr.length)+"</br>"
+//	for (var i = 0; i < arr.length; i++) {
+//		document.write(arr[i]+"</br>");
+//	}
+	document.write(arr.pop());
+	document.write(arr.join(*));
+	
+	
+</script>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd"> <!-- bean definitions here -->
+	<!--开启AspectJ注解配置 自动代理  -->
+	<aop:aspectj-autoproxy/>
+	
+	<!--通知Spring容器,注解Bean所在的位置  -->
+	<!--配置扫描包,自动扫描该包下使用了注解的Bean对象 -->
+<!--<context:component-scan base-package="com.spring"></context:component-scan> -->
+	
+	<!--或者用xml方式配置bean和切面类  -->
+	<bean id="UserDao" class="com.spring.aspectJ_annotation.UserDaoImpl"></bean>
+	<bean id="MyaspectJ" class="com.spring.aspectJ_annotation.MyaspectJ"></bean>
+	
+</beans>

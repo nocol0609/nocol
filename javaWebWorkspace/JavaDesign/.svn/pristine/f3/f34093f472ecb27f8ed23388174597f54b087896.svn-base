@@ -1,0 +1,9 @@
+package test;
+
+public abstract class test2 {
+	
+	public int a=1;
+	
+	abstract void  say();
+	
+}

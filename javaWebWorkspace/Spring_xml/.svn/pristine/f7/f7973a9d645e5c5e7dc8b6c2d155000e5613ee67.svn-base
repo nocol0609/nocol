@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 在配置文件 引入约束 xsd schema 约束 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+	<!--第一部分：快速入门 -->
+	<bean id="UserServlet" class="com.spring.demo.UserServlet">
+		<!--返回UserServlet对象同时提供它所依赖的UserService对象 -->
+		<!-- name:对应对象中的setXxxx方法，表示对象含有该属性 ref:表示应用另一个bean对象的id -->
+		<property name="UserService" ref="UserService"></property>
+	</bean>
+	<bean id="UserService" class="com.spring.demo.UserServieImpl">
+		<property name="Dao" ref="UserDao"></property>
+	</bean>
+	<bean id="UserDao" class="com.spring.demo.UserDaoImpl"></bean>
+
+	<!--第二部分：bean的三种实例方式 -->
+	<!--方式一：使用构造器(无参)实例化对象 -->
+	<bean id="Bean1" class="com.spring.bean.Bean1"></bean>
+
+	<!--方式二：通过静态工厂的静态方法实例化对象 -->
+	<!--调用Bean2Factory的factory-method方法返回对象 -->
+	<bean id="Bean2" class="com.spring.bean.Bean2Factory"
+		factory-method="getBean2"></bean>
+
+	<!--方式三：使用实例工厂的实例方法返回对象 -->
+	<bean id="Bean3Factory" class="com.spring.bean.Bean3Factory"></bean>
+	<bean id="Bean3" factory-bean="Bean3Factory" factory-method="getBean3"></bean>
+
+	<!--第三部分：bean的作用域 -->
+	<!--通过scope属性指定bean作用域,默认为Singleton -->
+	<bean id="SingletonBean" class="com.spring.scope.SingletonBean"></bean>
+	<bean id="PrototypeBean" class="com.spring.scope.PrototypeBean" scope="prototype"></bean>
+ 
+	<!--第四部分：bean的生命周期 -->
+	<bean id="lifeCycleBean" class="com.spring.beanLife.lifeCycleBean"
+		init-method="create" destroy-method="destroy"></bean>
+	<!--配置后处理器不需要id属性,Spring直接判断 -->
+	<bean class="com.spring.beanLife.MyBeanPostProcessor"></bean>
+
+	<!--第五部分：依赖注入 -->
+	<!--通过constructor-arg注入构造函数的参数 -->
+	<bean id="Student" class="com.spring.yilai.Student">
+		<!-- index:代表参数顺序，从0开始 type：代表参数的类型 name：代表参数的名称 value：注入参数的值 ref：引入另一个bean元素的id -->
+		<constructor-arg index="0" type="String" value="tom"></constructor-arg>
+		<constructor-arg index="1" type="int" value="19"></constructor-arg>
+	</bean>
+
+	<!--通过setter方法属性注入 -->
+	<bean id="Employee" class="com.spring.yilai.Employee">
+		<!--通过property 注入setter方法属性(属性名称由setter方法体力获得) -->
+		<!-- name：属性名称(由setter方法获得,与属性无关) value：注入参数的值 ref：引入另一个bean的id -->
+		<property name="id" value="1"></property>
+		<property name="name" value="jack"></property>
+		<!--注入复杂的引用类型 -->
+		<property name="student" ref="Student"></property>
+	</bean>
+
+	<!--使用p命名空间注入（简化setter注入方式） -->
+	<bean id="Employee2" class="com.spring.yilai.Employee" p:id="2"
+		p:name="rose" p:student-ref="Student"></bean> 
+		
+	<!--spEl表达式注入-->
+	<bean id="ValueBean" class="com.spring.yilai.ValueBean"></bean>
+	<bean id="Employee3" class="com.spring.yilai.Employee">
+		<!--调用ValueBean的getId()方法  -->
+		<property name="id" value="#{ValueBean.id}"></property>
+		<!--调用ValueBean的PickName方法 ,得到字符串对象还可以继续调方法 -->
+		<property name="name" value="#{ValueBean.PickName().toUpperCase()}"></property>
+		<!-- #{Student}效果类似于ref -->
+		<property name="student" value="#{Student}"></property>
+	</bean>
+	
+	<!--集合类型注入  -->
+	<bean id="CollectionBean" class="com.spring.yilai.CollectionBean">
+	<!--
+		array:注入数组
+		list：注入list集合
+		set：注入set集合
+		map：注入map集合
+		props：注入properties集合
+	  -->
+	<property name="list">
+		<list>
+			<!--
+			    value :注入基本数据类型
+				ref:注入引用Bean的id
+			  -->
+			  <value>aaa</value>
+			  <value>bbb</value>
+		</list>
+	</property>
+	
+	<property name="set">
+		<set>
+			<value>we</value>
+			<value>rng</value>
+		</set>
+	</property>
+	
+	<property name="map">
+		<map>
+			<entry key="tom" value="15"></entry>
+			<entry key="jack" value="19"></entry>
+		</map>
+	</property>
+	
+	<property name="properties">
+		<props>
+			<prop key="bb">123</prop>
+			<prop key="cc">456</prop>
+		</props>
+	</property>
+	
+	</bean>
+</beans>

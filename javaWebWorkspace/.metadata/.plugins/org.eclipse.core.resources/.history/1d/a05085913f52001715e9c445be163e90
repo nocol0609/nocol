@@ -1,0 +1,63 @@
+package com.spring.cglibproxy;
+
+import java.lang.reflect.Method;
+
+import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.cglib.proxy.MethodInterceptor;
+import org.springframework.cglib.proxy.MethodProxy;
+
+public class CglibProxy implements MethodInterceptor {
+
+	// 目标对象
+	UserDao dao = new UserDao();
+
+	// 传入目标对象
+	public CglibProxy(UserDao dao) {
+		// TODO Auto-generated constructor stub
+		this.dao = dao;
+	}
+	
+	/**
+	 * 返回代理对象
+	 */
+	public Object getUserDaoProxy(){
+		
+		//创建Enhancer实例
+		Enhancer enhancer=new Enhancer();
+		
+		//cglib创建代理,为目标对象创建子类对象
+		enhancer.setSuperclass(dao.getClass());
+		
+		//传入callback对象，对目标对象增强
+		enhancer.setCallback(this);
+		
+		//创建代理对象
+		return enhancer.create();
+	}
+	
+	/**
+	 * @param proxy 目标对象
+	 * @param method 代表方法
+	 * @param args 代表方法的参数 
+	 * @param methodProxy 代表方法的镜像
+	 */
+	@Override 
+	public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+		// TODO Auto-generated method stub
+		
+		/**
+		 * 在目标对象调用方法前开始代理
+		 */
+		System.out.println("开始代理...");
+		/**
+		 * 目标对象调用方法
+		 */
+//		Object obj = methodProxy.invokeSuper(dao, arg);
+		Object obj = method.invoke(dao, args);
+		/**
+		 * 在目标对象调用方法前结束代理
+		 */
+		return obj;
+	}
+}
+

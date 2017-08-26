@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syncparticipants>
+<participant displayName="SVN (/Js, /Jsp, /Shiro, /Spring_aop, /Thread, /ssm_shiro)" id="org.tigris.subversion.subclipse.participant" secondary_id="1499843023981">
+<data root="false">
+<org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS org.eclipse.team.ui.SCOPE_TYPE="ResourceScope">
+<org.eclipse.team.ui.TEAMSUBSRCIBER_REFRESHSCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_RUNONCE="false"/>
+<resource_scope_roots resource_scope_root_resource="/Js"/>
+<resource_scope_roots resource_scope_root_resource="/Jsp"/>
+<resource_scope_roots resource_scope_root_resource="/Shiro"/>
+<resource_scope_roots resource_scope_root_resource="/Spring_aop"/>
+<resource_scope_roots resource_scope_root_resource="/Thread"/>
+<resource_scope_roots resource_scope_root_resource="/ssm_shiro"/>
+</org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS>
+</data>
+</participant>
+</syncparticipants>

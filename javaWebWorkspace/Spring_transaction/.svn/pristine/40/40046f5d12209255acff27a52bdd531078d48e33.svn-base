@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+		
+	
+	<!--使用注解依赖注入 -->
+	<!--配置该标签使@Autowired生效 -->
+	<context:annotation-config />
+	
+<!-- 	<context:component-scan base-package="com.transaction"/>  -->
+		
+	<!--引入propertise文件  -->
+	<context:property-placeholder location="classpath:db.properties"/>	
+
+	<!--配置连接池  -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${driver}" />
+		<property name="jdbcUrl" value="${url}" />
+		<property name="user" value="${user}" />
+		<property name="password" value="${passwd}" />
+	</bean>
+	
+	<!--配置AccountDao  -->
+	<bean id="AccountDao" class="com.transaction.dao.AccountDaoImpl">
+		<!--将数据源注入AccountDao  -->
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--配置AccountService  -->
+	<bean id="AccountService" class="com.transaction.service.AccountServiceImpl ">
+<!--!!!!!!!!!!!!!!!已经使用了@AutoWired不需要进行二次注入！！！！！！！！！！！！-->
+		<!--注入 AccountDao -->
+<!-- <property name="AccountDao" ref="AccountDao"></property> -->
+	</bean>
+	
+	<!--基于tx.aop（传统xml）进行声明式事务管理  -->
+	
+	<!--配置事务管理器  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 事务管理器，需要从数据源获取连接，才能开启事务，提交事务，回滚事务 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!--配置Advice进行事务增强（执行sql前开启事务，执行后提交事务或回滚事务）  -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<!-- 事务配置属性，对什么方法，应用怎样的事务配置，配置信息，成为 TransactionDefinition对象 -->
+		<tx:attributes>
+			<!--
+				name:方法名
+				isolation:隔离级别
+				propagation：传播行为
+				timeout：超时时间
+				read-only：是否只读
+				rollback-for：配置一些异常类型，发生异常回滚事务(配置出现的异常的全路径)
+				no-rollback-for：配置一些异常类型，发生异常不回滚事务(配置出现的异常的全路径)
+			  -->
+			<tx:method name="transfer" isolation="DEFAULT" propagation="REQUIRED"
+						timeout="-1" read-only="false"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!--配置切面（切面由Advice和切点组成）  -->
+	<aop:config>
+		<!--配置切点  -->
+		<aop:pointcut expression="execution(* com.transaction.service.AccountServiceImpl.*(..))" id="myPoint"/>
+		<!--配置advice-->
+		<aop:advisor advice-ref="transactionAdvice" pointcut-ref="myPoint"/>
+	</aop:config>
+</beans>

@@ -1,0 +1,13 @@
+package com.spring.cglibproxy;
+
+public class CglibProxy {
+
+	// 目标对象
+	UserDao dao = new UserDao();
+
+	// 传入目标对象
+	public CglibProxy(UserDao dao) {
+		// TODO Auto-generated constructor stub
+		this.dao = dao;
+	}
+}
